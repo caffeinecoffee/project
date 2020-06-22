@@ -33,7 +33,6 @@ public class ImportPanel extends JPanel implements DropTargetListener {
 	@Override
 	public void dragOver(DropTargetDragEvent dtde) {
 		// TODO Auto-generated method stub
-		this.setBackground(new Color(100, 0, 0, 25));
 	}
 
 	@Override
@@ -44,13 +43,11 @@ public class ImportPanel extends JPanel implements DropTargetListener {
 	@Override
 	public void dragExit(DropTargetEvent dte) {
 		// TODO Auto-generated method stub
-		this.setBackground(new Color(255, 255, 255, 255));
 	}
 
 	@Override
 	public void drop(DropTargetDropEvent dtde) {
 		// TODO Auto-generated method stub
-		this.setBackground(new Color(255, 255, 255, 255));
 		System.out.println("임포트");
 
 		if ((dtde.getDropAction() & DnDConstants.ACTION_COPY_OR_MOVE) != 0) {

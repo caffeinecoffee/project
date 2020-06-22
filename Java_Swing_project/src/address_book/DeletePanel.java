@@ -18,7 +18,7 @@ public class DeletePanel extends JPanel implements MouseListener {
 
 	public DeletePanel() {
 		setLayout(null);
-		
+
 		model = new DefaultTableModel(header, 0);
 		searchTable = new JTable(model);
 		dataScrollPane = new JScrollPane(searchTable);
@@ -44,7 +44,9 @@ public class DeletePanel extends JPanel implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		DBConnect.DeleteData(searchTable);
+		if (e.getButton() == 1) {
+			DBConnect.DeleteData(searchTable);
+		}
 	}
 
 	@Override
