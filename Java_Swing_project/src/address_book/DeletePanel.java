@@ -1,16 +1,20 @@
 package address_book;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-public class DeletePanel extends JPanel implements MouseListener {
+public class DeletePanel extends JPanel implements MouseListener, ActionListener {
 	DBConnect DBConnect = new DBConnect();
+	private JButton refreshButton = new JButton("새로고침");
 	private DefaultTableModel model;
 	private JTable searchTable;
 	private JScrollPane dataScrollPane;
@@ -18,7 +22,11 @@ public class DeletePanel extends JPanel implements MouseListener {
 
 	public DeletePanel() {
 		setLayout(null);
-
+		
+		this.add(refreshButton);
+		refreshButton.setBounds(20, 15, 100, 20);
+		refreshButton.addActionListener(this);
+		
 		model = new DefaultTableModel(header, 0);
 		searchTable = new JTable(model);
 		dataScrollPane = new JScrollPane(searchTable);
@@ -71,6 +79,12 @@ public class DeletePanel extends JPanel implements MouseListener {
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		DBConnect.SelectAllData(searchTable);
 	}
 
 }

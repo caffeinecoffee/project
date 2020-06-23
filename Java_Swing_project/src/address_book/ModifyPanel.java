@@ -1,17 +1,21 @@
 package address_book;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-public class ModifyPanel extends JPanel implements MouseListener {
+public class ModifyPanel extends JPanel implements MouseListener, ActionListener {
 	DBConnect DBConnect = new DBConnect();
+	private JButton refreshButton = new JButton("새로고침");
 	DefaultTableModel model;
 	JTable table;
 	JScrollPane scroll;
@@ -19,7 +23,11 @@ public class ModifyPanel extends JPanel implements MouseListener {
 
 	public ModifyPanel() {
 		setLayout(null);
-
+		
+		this.add(refreshButton);
+		refreshButton.setBounds(20, 15, 100, 20);
+		refreshButton.addActionListener(this);
+		
 		model = new DefaultTableModel(header, 0);
 		table = new JTable(model);
 		scroll = new JScrollPane(table);
@@ -49,9 +57,8 @@ public class ModifyPanel extends JPanel implements MouseListener {
 //		int column = table.getSelectedColumn();
 		String oldCellNumber = (String) table.getValueAt(table.getSelectedRow(), 1);
 		if (e.getButton() == 1) {
-			List<String> list = DBConnect.SelectData(oldCellNumber);
-			System.out.println("클릭한 곳 전화번호 : "+oldCellNumber);
-			new ModifyFrame(list, oldCellNumber);
+			AddressDTO adto = DBConnect.SelectData(oldCellNumber);
+			new ModifyFrame(adto, oldCellNumber);
 			DBConnect.SelectAllData(table);
 		}
 	}
@@ -78,5 +85,11 @@ public class ModifyPanel extends JPanel implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		DBConnect.SelectAllData(table);
 	}
 }

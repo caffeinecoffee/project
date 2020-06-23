@@ -1,16 +1,11 @@
 package address_book;
 
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class Address extends JFrame implements ActionListener {
-	//데이터 추가되었을 때 알림창
-	//데이터 추가되고 필드 정리
-	//not null값이 null일때 알림창 띄우고 데이터베이스 연결 안함
 	private ButtonPanel buttonPanel = new ButtonPanel();
 	SearchPanel searchPanel = new SearchPanel();
 	AddPanel addPanel = new AddPanel();

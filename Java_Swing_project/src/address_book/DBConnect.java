@@ -18,6 +18,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class DBConnect {
+	AddressDTO adto = new AddressDTO();
 
 	private Connection getConnection() {
 		// TODO Auto-generated method stub
@@ -40,29 +41,33 @@ public class DBConnect {
 		return conn;
 	}
 
-	public int AddData(String name, String cellNumber, String company, String email, String classification,
-			String domicile, String relation, String memo, String website, String messenger) throws SQLException {
+	public int AddData(AddressDTO adto) {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		int cnt = 0;
 		if (conn != null) {
-			pstmt = conn.prepareStatement("insert into address values (?,?,?,?,?,?,?,?,?,?)");
-			pstmt.setString(1, name);
-			pstmt.setString(2, cellNumber);
-			pstmt.setString(3, company);
-			pstmt.setString(4, email);
-			pstmt.setString(5, classification);
-			pstmt.setString(6, domicile);
-			pstmt.setString(7, relation);
-			pstmt.setString(8, memo);
-			pstmt.setString(9, website);
-			pstmt.setString(10, messenger);
-			cnt = pstmt.executeUpdate();
+			try {
+				pstmt = conn.prepareStatement("insert into address values (?,?,?,?,?,?,?,?,?,?)");
+				pstmt.setString(1, adto.getName());
+				pstmt.setString(2, adto.getCellNumber());
+				pstmt.setString(3, adto.getCompany());
+				pstmt.setString(4, adto.getEmail());
+				pstmt.setString(5, adto.getClassification());
+				pstmt.setString(6, adto.getDomicile());
+				pstmt.setString(7, adto.getRelation());
+				pstmt.setString(8, adto.getMemo());
+				pstmt.setString(9, adto.getWebsite());
+				pstmt.setString(10, adto.getMessenger());
+				cnt = pstmt.executeUpdate();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		if (pstmt != null)
-			pstmt.close();
-		if (conn != null)
-			conn.close();
 		return cnt;
 	}
 
@@ -160,9 +165,38 @@ public class DBConnect {
 		}
 	}
 
-	public List<String> SelectData(String CELL_NUMBER) {
+	public int SearchData(String number) {
 		// TODO Auto-generated method stub
-		List<String> list = new ArrayList<String>();
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int cnt = 0;
+		try {
+			if (conn != null) {
+				pstmt = conn.prepareStatement(
+						"select * from address where CELL_NUMBER = ?");
+				pstmt.setString(1, number);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					cnt++;
+				}
+			}
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+			if (rs != null)
+				rs.close();
+		} catch (SQLException ie) {
+			// TODO Auto-generated catch block
+			ie.printStackTrace();
+		}
+		return cnt;
+	}
+
+	public AddressDTO SelectData(String CELL_NUMBER) {
+		// TODO Auto-generated method stub
+		AddressDTO adto = new AddressDTO();
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -174,16 +208,16 @@ public class DBConnect {
 				pstmt.setString(1, CELL_NUMBER);
 				rs = pstmt.executeQuery();
 				rs.next();
-				list.add(0, rs.getString("NAME"));
-				list.add(1, rs.getString("CELL_NUMBER"));
-				list.add(2, rs.getString("COMPANY"));
-				list.add(3, rs.getString("EMAIL"));
-				list.add(4, rs.getString("CLASSIFICATION"));
-				list.add(5, rs.getString("DOMICILE"));
-				list.add(6, rs.getString("RELATION"));
-				list.add(7, rs.getString("MEMO"));
-				list.add(8, rs.getString("WEBSITE"));
-				list.add(9, rs.getString("MESSENGER"));
+				adto.setName(rs.getString("NAME"));
+				adto.setCellNumber(rs.getString("CELL_NUMBER"));
+				adto.setCompany(rs.getString("COMPANY"));
+				adto.setEmail(rs.getString("EMAIL"));
+				adto.setClassification(rs.getString("CLASSIFICATION"));
+				adto.setDomicile(rs.getString("DOMICILE"));
+				adto.setRelation(rs.getString("RELATION"));
+				adto.setMemo(rs.getString("MEMO"));
+				adto.setWebsite(rs.getString("WEBSITE"));
+				adto.setMessenger(rs.getString("MESSENGER"));
 			}
 		} catch (SQLException ie) {
 			// TODO Auto-generated catch block
@@ -201,7 +235,7 @@ public class DBConnect {
 				e1.printStackTrace();
 			}
 		}
-		return list;
+		return adto;
 	}
 
 	public void DeleteData(JTable table) {
@@ -236,15 +270,10 @@ public class DBConnect {
 				}
 			}
 			SelectAllData(table);
-		} else if (result == 1) {
-
-		} else if (result == 2) {
-
 		}
 	}
 
-	public void UpdateData(String name, String oldCellNumber, String cellNumber, String company, String email,
-			String classification, String domicile, String relation, String memo, String website, String messenger) {
+	public void UpdateData(AddressDTO adto) {
 		// TODO Auto-generated method stub
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
@@ -252,33 +281,27 @@ public class DBConnect {
 		try {
 			pstmt = conn.prepareStatement(
 					"update address SET NAME=?, CELL_NUMBER=?, COMPANY=?, EMAIL=?, CLASSIFICATION=?, DOMICILE=?, RELATION=?, MEMO=?, WEBSITE=?, MESSENGER=? where CELL_NUMBER=?");
-			pstmt.setString(1, name);
-			pstmt.setString(2, cellNumber);
-			pstmt.setString(3, company);
-			pstmt.setString(4, email);
-			pstmt.setString(5, classification);
-			pstmt.setString(6, domicile);
-			pstmt.setString(7, relation);
-			pstmt.setString(8, memo);
-			pstmt.setString(9, website);
-			pstmt.setString(10, messenger);
-			pstmt.setString(11, oldCellNumber);
+			pstmt.setString(1, adto.getName());
+			pstmt.setString(2, adto.getCellNumber());
+			pstmt.setString(3, adto.getCompany());
+			pstmt.setString(4, adto.getEmail());
+			pstmt.setString(5, adto.getClassification());
+			pstmt.setString(6, adto.getDomicile());
+			pstmt.setString(7, adto.getRelation());
+			pstmt.setString(8, adto.getMemo());
+			pstmt.setString(9, adto.getWebsite());
+			pstmt.setString(10, adto.getMessenger());
+			pstmt.setString(11, adto.getOldCellNumber());
 			rs = pstmt.executeQuery();
-		} catch (SQLException ie) {
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+			if (rs != null)
+				rs.close();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			ie.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-				if (rs != null)
-					rs.close();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			e.printStackTrace();
 		}
 	}
 

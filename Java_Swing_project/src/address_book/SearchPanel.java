@@ -11,9 +11,6 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class SearchPanel extends JPanel implements ActionListener {
-	// 검색, 추가, 수정, 삭제
-	// 임포트, 익스포트 드래그 앤 드롭 액션
-	// 이름, 휴대폰번호, 직장, 이메일, 그룹, 주소, 관계, 메모, 웹사이트, 메신저 계정()
 	// 부분검색 기능 구현
 	DBConnect DBConnect = new DBConnect();
 	private JButton dataSearchButton = new JButton("검색");

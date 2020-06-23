@@ -3,8 +3,6 @@ package address_book;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,9 +11,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class AddPanel extends JPanel implements ActionListener {
-	// 입력 길이 제한, 전화번호 숫자만 입력(입력 데이터 타입 제한), 데이터 추가 성공 or 실패 출력, 키값 중복 확인
-	// 전화번호가 같은 데이터가 입력되면 수정할지 기존 데이터 유지할지 선택
 	DBConnect DBConnect = new DBConnect();
+	AddressDTO adto = new AddressDTO();
 	private Font font = new Font("돋움", Font.BOLD, 20);
 	private Font successFont = new Font("돋움", Font.BOLD, 30);
 	private JLabel nameAddLabel = new JLabel("이름");
@@ -46,7 +43,7 @@ public class AddPanel extends JPanel implements ActionListener {
 	private JTextArea dataSuccessArea = new JTextArea();
 	private JButton dataAddButton = new JButton("데이터 추가");
 	private JButton dataModifyButton = new JButton("데이터 수정");
-	private JTextField oldCellNumberField = new JTextField();;
+	private JTextField oldCellNumberField = new JTextField();
 
 	public AddPanel() {
 		setLayout(null);
@@ -142,22 +139,22 @@ public class AddPanel extends JPanel implements ActionListener {
 		this.setVisible(false);
 	}
 
-	public AddPanel(List<String> list, String oldCellNumber) {
+	public AddPanel(AddressDTO adto, String oldCellNumber) {
 		setLayout(null);
-		nameAddField.setText(list.get(0));
+		nameAddField.setText(adto.getName());
 		oldCellNumberField.setText(oldCellNumber);
-		String[] number = list.get(1).split("-");
+		String[] number = adto.getCellNumber().split("-");
 		cellNumberAddField1.setText(number[0]);
 		cellNumberAddField2.setText(number[1]);
 		cellNumberAddField3.setText(number[2]);
-		companyAddField.setText(list.get(2));
-		emailAddField.setText(list.get(3));
-		classificationAddField.setText(list.get(4));
-		domicileAddField.setText(list.get(5));
-		relationAddField.setText(list.get(6));
-		memoAddTextArea.setText(list.get(7));
-		websiteAddField.setText(list.get(8));
-		messengerAddField.setText(list.get(9));
+		companyAddField.setText(adto.getCompany());
+		emailAddField.setText(adto.getEmail());
+		classificationAddField.setText(adto.getClassification());
+		domicileAddField.setText(adto.getDomicile());
+		relationAddField.setText(adto.getRelation());
+		memoAddTextArea.setText(adto.getMemo());
+		websiteAddField.setText(adto.getWebsite());
+		messengerAddField.setText(adto.getMessenger());
 		this.add(nameAddLabel);
 		this.add(nameAddField);
 		this.add(cellNumberAddLabel);
@@ -261,27 +258,39 @@ public class AddPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		adto.setName(nameAddField.getText().trim());
+		adto.setCellNumber(cellNumberAddField1.getText().trim() + "-" + cellNumberAddField2.getText().trim() + "-"
+				+ cellNumberAddField3.getText().trim());
+		adto.setCompany(companyAddField.getText().trim());
+		adto.setEmail(emailAddField.getText().trim());
+		adto.setWebsite(websiteAddField.getText().trim());
+		adto.setClassification(classificationAddField.getText().trim());
+		adto.setDomicile(domicileAddField.getText().trim());
+		adto.setMessenger(messengerAddField.getText().trim());
+		adto.setRelation(relationAddField.getText().trim());
+		adto.setMemo(memoAddTextArea.getText().trim());
 		if (e.getSource().equals(dataAddButton)) {
-			try {
-				int cnt = DBConnect.AddData(nameAddField.getText().trim(),
-						cellNumberAddField1.getText().trim() + "-" + cellNumberAddField2.getText().trim() + "-"
-								+ cellNumberAddField3.getText().trim(),
-						companyAddField.getText().trim(), emailAddField.getText().trim(),
-						websiteAddField.getText().trim(), classificationAddField.getText().trim(),
-						domicileAddField.getText().trim(), messengerAddField.getText().trim(),
-						relationAddField.getText().trim(), memoAddTextArea.getText().trim());
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			if (!adto.getCellNumber().equals("--")) {
+				if (adto.getName() != null && !adto.getName().equals("") && adto.getName().length() != 0) {
+					if (DBConnect.SearchData(adto.getCellNumber()) == 0) {
+						int cnt = DBConnect.AddData(adto);
+						if (cnt > 0) {
+							dataSuccessArea.setText("데이터 입력 성공.");
+						} else {
+							dataSuccessArea.setText("데이터 입력 실패.");
+						}
+					} else {
+						dataSuccessArea.setText("전화번호 중복.");
+					}
+				} else {
+					dataSuccessArea.setText("이름이 없습니다.");
+				}
+			} else {
+				dataSuccessArea.setText("전화번호가 없습니다.");
 			}
 		} else if (e.getSource().equals(dataModifyButton)) {
-			DBConnect.UpdateData(nameAddField.getText().trim(), oldCellNumberField.getText().trim(),
-					cellNumberAddField1.getText().trim() + "-" + cellNumberAddField2.getText().trim() + "-"
-							+ cellNumberAddField3.getText().trim(),
-					companyAddField.getText().trim(), emailAddField.getText().trim(), websiteAddField.getText().trim(),
-					classificationAddField.getText().trim(), domicileAddField.getText().trim(),
-					messengerAddField.getText().trim(), relationAddField.getText().trim(),
-					memoAddTextArea.getText().trim());
+			adto.setOldCellNumber(oldCellNumberField.getText().trim());
+			DBConnect.UpdateData(adto);
 		}
 	}
 
