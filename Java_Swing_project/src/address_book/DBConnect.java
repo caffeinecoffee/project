@@ -173,8 +173,7 @@ public class DBConnect {
 		int cnt = 0;
 		try {
 			if (conn != null) {
-				pstmt = conn.prepareStatement(
-						"select * from address where CELL_NUMBER = ?");
+				pstmt = conn.prepareStatement("select * from address where CELL_NUMBER = ?");
 				pstmt.setString(1, number);
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
@@ -410,31 +409,37 @@ public class DBConnect {
 	public void DataImport(File filePath) throws IOException, SQLException {
 		BufferedReader in = new BufferedReader(new FileReader(filePath));
 		String line = in.readLine();
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		while ((line = in.readLine()) != null) {
 			String[] arr = line.split("\",\"");
 			arr[0] = arr[0].substring(1);
 			int cnt = 0;
-			Connection conn = getConnection();
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			pstmt = conn.prepareStatement("insert into address values (?,?,?,?,?,?,?,?,?,?)");
-			pstmt.setString(1, arr[0] + arr[1]);
-			pstmt.setString(2, arr[6]);
-			pstmt.setString(3, arr[20]);
-			pstmt.setString(4, arr[7]);
-			pstmt.setString(5, arr[8]);
-			pstmt.setString(6, arr[26]);
-			pstmt.setString(7, arr[4]);
-			pstmt.setString(8, arr[25]);
-			pstmt.setString(9, arr[32]);
-			pstmt.setString(10, arr[34]);
-			cnt = pstmt.executeUpdate();
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
-			if (rs != null)
-				rs.close();
+			if (!arr[6].equals("") && arr[6] != null && arr[6].length() != 0) {
+				if ((arr[0] + arr[1]) != null && !(arr[0] + arr[1]).equals("") && (arr[0] + arr[1]).length() != 0) {
+					if (SearchData(arr[6]) == 0) {
+						pstmt = conn.prepareStatement("insert into address values (?,?,?,?,?,?,?,?,?,?)");
+						pstmt.setString(1, arr[0] + arr[1]);
+						pstmt.setString(2, arr[6]);
+						pstmt.setString(3, arr[20]);
+						pstmt.setString(4, arr[7]);
+						pstmt.setString(5, arr[8]);
+						pstmt.setString(6, arr[26]);
+						pstmt.setString(7, arr[4]);
+						pstmt.setString(8, arr[25]);
+						pstmt.setString(9, arr[32]);
+						pstmt.setString(10, arr[34]);
+						cnt = pstmt.executeUpdate();
+					}
+				}
+			}
 		}
+		if (pstmt != null)
+			pstmt.close();
+		if (conn != null)
+			conn.close();
+		if (rs != null)
+			rs.close();
 	}
 }
