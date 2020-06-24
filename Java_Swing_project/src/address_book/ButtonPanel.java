@@ -8,6 +8,7 @@ public class ButtonPanel extends JPanel {
 	private JButton addButton = new JButton("추가");
 	private JButton modifyButton = new JButton("수정");
 	private JButton deleteButton = new JButton("삭제");
+	private JButton ImpExpButton = new JButton("임포트 / 익스포트");
 
 	public JButton getSearchButton() {
 		return searchButton;
@@ -41,11 +42,20 @@ public class ButtonPanel extends JPanel {
 		this.deleteButton = deleteButton;
 	}
 
+	public JButton getImpExpButton() {
+		return ImpExpButton;
+	}
+
+	public void setImpExpButton(JButton impExpButton) {
+		ImpExpButton = impExpButton;
+	}
+
 	public ButtonPanel() {
 		this.add(searchButton);
 		this.add(addButton);
 		this.add(modifyButton);
 		this.add(deleteButton);
+		this.add(ImpExpButton);
 		this.setBounds(0, 0, 800, 50);
 		this.setVisible(true);
 	}

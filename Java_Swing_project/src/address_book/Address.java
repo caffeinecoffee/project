@@ -1,5 +1,6 @@
 package address_book;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,7 +29,8 @@ public class Address extends JFrame implements ActionListener {
 		buttonPanel.getAddButton().addActionListener(this);
 		buttonPanel.getModifyButton().addActionListener(this);
 		buttonPanel.getDeleteButton().addActionListener(this);
-
+		buttonPanel.getImpExpButton().addActionListener(this);
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setResizable(false);
 		this.setSize(800, 450);
@@ -43,21 +45,36 @@ public class Address extends JFrame implements ActionListener {
 			addPanel.Visible(false);
 			modifyPanel.Visible(false);
 			deletePanel.Visible(false);
+			importPanel.Visible(false);
+			exportPanel.Visible(false);
 		} else if (e.getSource().equals(buttonPanel.getAddButton())) {
 			searchPanel.Visible(false);
 			addPanel.Visible(true);
 			modifyPanel.Visible(false);
 			deletePanel.Visible(false);
+			importPanel.Visible(false);
+			exportPanel.Visible(false);
 		} else if (e.getSource().equals(buttonPanel.getModifyButton())) {
 			searchPanel.Visible(false);
 			addPanel.Visible(false);
 			modifyPanel.Visible(true);
 			deletePanel.Visible(false);
+			importPanel.Visible(false);
+			exportPanel.Visible(false);
 		} else if (e.getSource().equals(buttonPanel.getDeleteButton())) {
 			searchPanel.Visible(false);
 			addPanel.Visible(false);
 			modifyPanel.Visible(false);
 			deletePanel.Visible(true);
+			importPanel.Visible(false);
+			exportPanel.Visible(false);
+		} else if (e.getSource().equals(buttonPanel.getImpExpButton())) {
+			searchPanel.Visible(false);
+			addPanel.Visible(false);
+			modifyPanel.Visible(false);
+			deletePanel.Visible(false);
+			importPanel.Visible(true);
+			exportPanel.Visible(true);
 		}
 	}
 

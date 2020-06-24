@@ -322,7 +322,6 @@ public class DBConnect {
 			pstmt = conn.prepareStatement(
 					"select NAME, CELL_NUMBER, COMPANY, EMAIL, CLASSIFICATION, DOMICILE, RELATION, MEMO, WEBSITE, MESSENGER from address order by name");
 			rs = pstmt.executeQuery();
-			System.out.println(rs);
 			for (int i = 0; rs.next(); i++) {
 				contents[i][0] = rs.getString("NAME");
 				contents[i][1] = rs.getString("CELL_NUMBER");

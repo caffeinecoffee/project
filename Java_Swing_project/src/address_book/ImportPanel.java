@@ -1,6 +1,6 @@
 package address_book;
 
-import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -14,14 +14,31 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class ImportPanel extends JPanel implements DropTargetListener {
 	DBConnect DBConnect = new DBConnect();
+	ImageIcon icon = new ImageIcon("./img/1234.png");
+
 	public ImportPanel() {
 		this.setBounds(0, 50, 400, 400);
-		this.setVisible(true);
+		this.setVisible(false);
 		DropTarget DropPImport = new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, this, true, null);
+	}
+
+	public void paint(Graphics g) {
+		g.drawImage(icon.getImage(), 0, 0, null);
+		setOpaque(false);
+		super.paint(g);
+	}
+
+	public void Visible(boolean a) {
+		if (a) {
+			this.setVisible(a);
+		} else {
+			this.setVisible(a);
+		}
 	}
 
 	@Override

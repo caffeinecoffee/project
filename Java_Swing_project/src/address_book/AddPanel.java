@@ -1,5 +1,6 @@
 package address_book;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -242,7 +243,6 @@ public class AddPanel extends JPanel implements ActionListener {
 		dataModifyButton.setFont(font);
 
 		dataModifyButton.addActionListener(this);
-
 		this.setBounds(0, 50, 600, 400);
 		this.setVisible(true);
 	}
