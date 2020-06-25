@@ -20,17 +20,18 @@ import javax.swing.JPanel;
 
 public class ExportPanel extends JPanel implements DropTargetListener {
 	DBConnect DBConnect = new DBConnect();
-	ImageIcon icon = new ImageIcon("./img/p_29.png");
+	ImageIcon icon = new ImageIcon("./img/4321.png");
+	ImageIcon bubble = new ImageIcon("./img/speech_bubble_export.png");
 
 	public ExportPanel() {
-		// TODO Auto-generated constructor stub
 		this.setBounds(400, 50, 400, 400);
 		this.setVisible(false);
 		DropTarget DropPExport = new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, this, true, null);
 	}
 
 	public void paint(Graphics g) {
-		g.drawImage(icon.getImage(), 0, 0, null);
+		g.drawImage(icon.getImage(), 125, 125, null);
+		g.drawImage(bubble.getImage(), 0, 40, null);
 		setOpaque(false);
 		super.paint(g);
 	}

@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 public class ImportPanel extends JPanel implements DropTargetListener {
 	DBConnect DBConnect = new DBConnect();
 	ImageIcon icon = new ImageIcon("./img/1234.png");
+	ImageIcon bubble = new ImageIcon("./img/speech_bubble_Import.png");
 
 	public ImportPanel() {
 		this.setBounds(0, 50, 400, 400);
@@ -28,7 +29,8 @@ public class ImportPanel extends JPanel implements DropTargetListener {
 	}
 
 	public void paint(Graphics g) {
-		g.drawImage(icon.getImage(), 0, 0, null);
+		g.drawImage(icon.getImage(), 0, 125, null);
+		g.drawImage(bubble.getImage(), 125, 40, null);
 		setOpaque(false);
 		super.paint(g);
 	}

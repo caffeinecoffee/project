@@ -333,16 +333,6 @@ public class DBConnect {
 				contents[i][7] = rs.getString("MEMO");
 				contents[i][8] = rs.getString("WEBSITE");
 				contents[i][9] = rs.getString("MESSENGER");
-//				System.out.println(contents[i][0]);
-//				System.out.println(contents[i][1]);
-//				System.out.println(contents[i][2]);
-//				System.out.println(contents[i][3]);
-//				System.out.println(contents[i][4]);
-//				System.out.println(contents[i][5]);
-//				System.out.println(contents[i][6]);
-//				System.out.println(contents[i][7]);
-//				System.out.println(contents[i][8]);
-//				System.out.println(contents[i][9]);
 				for (int j = 0; j < 10; j++) {
 					if (contents[i][j] == null) {
 						contents[i][j] = "";
