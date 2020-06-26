@@ -13,6 +13,7 @@ import java.awt.dnd.DropTargetListener;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -67,15 +68,15 @@ public class ImportPanel extends JPanel implements DropTargetListener {
 	@Override
 	public void drop(DropTargetDropEvent dtde) {
 		// TODO Auto-generated method stub
-		System.out.println("임포트");
-
 		if ((dtde.getDropAction() & DnDConstants.ACTION_COPY_OR_MOVE) != 0) {
 			dtde.acceptDrop(dtde.getDropAction());
 			Transferable tr = dtde.getTransferable();
 			try {
-				java.util.List list = (java.util.List) tr.getTransferData(DataFlavor.javaFileListFlavor);
-				File FilePath = new File("" + list.get(0));
-				DBConnect.DataImport(FilePath);
+				List list = (List) tr.getTransferData(DataFlavor.javaFileListFlavor);
+				for (int i = 0; i < list.size(); i++) {
+					File FilePath = new File("" + list.get(i));
+					DBConnect.DataImport(FilePath);
+				}
 			} catch (UnsupportedFlavorException | IOException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
