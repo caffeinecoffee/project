@@ -22,7 +22,7 @@ public class SearchPanel extends JPanel implements ActionListener {
 
 	public SearchPanel() {
 		setLayout(null);
-		
+
 		this.add(searchField);
 		searchField.setBounds(20, 15, 150, 20);
 		this.add(dataSearchButton);
@@ -34,7 +34,7 @@ public class SearchPanel extends JPanel implements ActionListener {
 		dataScrollPane = new JScrollPane(searchTable);
 		dataScrollPane.setBounds(20, 50, 760, 300);
 		this.add(dataScrollPane, null);
-		
+
 		DBConnect.SelectAllData(searchTable);
 		this.setBounds(0, 50, 800, 400);
 		this.setVisible(false);

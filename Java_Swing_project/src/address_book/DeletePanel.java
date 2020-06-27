@@ -22,11 +22,11 @@ public class DeletePanel extends JPanel implements MouseListener, ActionListener
 
 	public DeletePanel() {
 		setLayout(null);
-		
+
 		this.add(refreshButton);
 		refreshButton.setBounds(20, 15, 100, 20);
 		refreshButton.addActionListener(this);
-		
+
 		model = new DefaultTableModel(header, 0);
 		searchTable = new JTable(model);
 		dataScrollPane = new JScrollPane(searchTable);
