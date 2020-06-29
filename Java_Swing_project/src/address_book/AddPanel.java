@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -135,7 +137,7 @@ public class AddPanel extends JPanel implements ActionListener {
 		dataAddButton.setFont(font);
 
 		dataAddButton.addActionListener(this);
-
+		
 		this.setBounds(0, 50, 800, 400);
 		this.setVisible(false);
 	}
@@ -291,6 +293,22 @@ public class AddPanel extends JPanel implements ActionListener {
 		} else if (e.getSource().equals(dataModifyButton)) {
 			adto.setOldCellNumber(oldCellNumberField.getText().trim());
 			DBConnect.UpdateData(adto);
+			// 이건 되는데
+			dataSuccessArea.setText("데이터 입력 되었습니다.");
+			
+			// 왜 이건 안됨??
+//			nameAddField.setText("??");
+//			cellNumberAddField1.setText(null);
+//			cellNumberAddField2.setText(null);
+//			cellNumberAddField3.setText(null);
+//			companyAddField.setText(null);
+//			emailAddField.setText(null);
+//			websiteAddField.setText(null);
+//			classificationAddField.setText(null);
+//			domicileAddField.setText(null);
+//			messengerAddField.setText(null);
+//			relationAddField.setText(null);
+//			memoAddTextArea.setText(null);
 		}
 	}
 
