@@ -242,8 +242,8 @@ public class DBConnect {
 		int row = table.getSelectedRow();
 		int column = table.getSelectedColumn();
 		String[] buttons = { "삭제", "취소" };
-		int result = JOptionPane.showOptionDialog(null, "?????", null, JOptionPane.YES_NO_CANCEL_OPTION,
-				JOptionPane.QUESTION_MESSAGE, null, buttons, "취소");
+		int result = JOptionPane.showOptionDialog(null, "삭제?", null, JOptionPane.YES_NO_CANCEL_OPTION,
+				JOptionPane.QUESTION_MESSAGE, null, buttons, "삭제");
 		if (result == 0) {
 			Connection conn = getConnection();
 			PreparedStatement pstmt = null;

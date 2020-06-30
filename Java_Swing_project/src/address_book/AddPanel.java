@@ -137,7 +137,7 @@ public class AddPanel extends JPanel implements ActionListener {
 		dataAddButton.setFont(font);
 
 		dataAddButton.addActionListener(this);
-		
+
 		this.setBounds(0, 50, 800, 400);
 		this.setVisible(false);
 	}
@@ -277,7 +277,20 @@ public class AddPanel extends JPanel implements ActionListener {
 					if (DBConnect.SearchData(adto.getCellNumber()) == 0) {
 						int cnt = DBConnect.AddData(adto);
 						if (cnt > 0) {
-							dataSuccessArea.setText("데이터 입력 성공.");
+							dataSuccessArea.setText("데이터 입력 됨.");
+							nameAddField.setText(null);
+							cellNumberAddField1.setText(null);
+							cellNumberAddField2.setText(null);
+							cellNumberAddField3.setText(null);
+							companyAddField.setText(null);
+							emailAddField.setText(null);
+							websiteAddField.setText(null);
+							classificationAddField.setText(null);
+							domicileAddField.setText(null);
+							messengerAddField.setText(null);
+							relationAddField.setText(null);
+							memoAddTextArea.setText(null);
+
 						} else {
 							dataSuccessArea.setText("데이터 입력 실패.");
 						}
@@ -293,22 +306,7 @@ public class AddPanel extends JPanel implements ActionListener {
 		} else if (e.getSource().equals(dataModifyButton)) {
 			adto.setOldCellNumber(oldCellNumberField.getText().trim());
 			DBConnect.UpdateData(adto);
-			// 이건 되는데
-			dataSuccessArea.setText("데이터 입력 되었습니다.");
-			
-			// 왜 이건 안됨??
-//			nameAddField.setText("??");
-//			cellNumberAddField1.setText(null);
-//			cellNumberAddField2.setText(null);
-//			cellNumberAddField3.setText(null);
-//			companyAddField.setText(null);
-//			emailAddField.setText(null);
-//			websiteAddField.setText(null);
-//			classificationAddField.setText(null);
-//			domicileAddField.setText(null);
-//			messengerAddField.setText(null);
-//			relationAddField.setText(null);
-//			memoAddTextArea.setText(null);
+			dataSuccessArea.setText("데이터 수정 되었습니다.");
 		}
 	}
 

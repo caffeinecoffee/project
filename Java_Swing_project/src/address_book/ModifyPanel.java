@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -19,6 +20,7 @@ public class ModifyPanel extends JPanel implements MouseListener, ActionListener
 	DefaultTableModel model;
 	JTable table;
 	JScrollPane scroll;
+	private JLabel Label = new JLabel("우클릭으로 수정");
 	private String[] header = { "이름", "휴대폰번호", "직장", "이메일", "관계" };
 
 	public ModifyPanel() {
@@ -27,6 +29,8 @@ public class ModifyPanel extends JPanel implements MouseListener, ActionListener
 		this.add(refreshButton);
 		refreshButton.setBounds(20, 15, 100, 20);
 		refreshButton.addActionListener(this);
+		this.add(Label);
+		Label.setBounds(130, 15, 100, 20);
 		
 		model = new DefaultTableModel(header, 0);
 		table = new JTable(model);

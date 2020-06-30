@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,6 +19,7 @@ public class DeletePanel extends JPanel implements MouseListener, ActionListener
 	private DefaultTableModel model;
 	private JTable searchTable;
 	private JScrollPane dataScrollPane;
+	private JLabel Label = new JLabel("우클릭으로 삭제");
 	private String[] header = { "이름", "휴대폰번호", "직장", "이메일", "관계" };
 
 	public DeletePanel() {
@@ -26,6 +28,8 @@ public class DeletePanel extends JPanel implements MouseListener, ActionListener
 		this.add(refreshButton);
 		refreshButton.setBounds(20, 15, 100, 20);
 		refreshButton.addActionListener(this);
+		this.add(Label);
+		Label.setBounds(130, 15, 100, 20);
 
 		model = new DefaultTableModel(header, 0);
 		searchTable = new JTable(model);
