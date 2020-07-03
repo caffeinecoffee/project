@@ -53,7 +53,6 @@ public class BoardController {
 		// model이나 기타 DTO 저장하여 view로 전달
 		// 비즈니스 로직을 적지 않음
 		pvo.setAllCount(boardListService.getAllcount());
-		logger.info("현재페이지: " + pvo.getCurrentPage());
 		List<BoardVO> list = boardListService.getArticles(pvo);
 		model.addAttribute("pvo", pvo);
 		model.addAttribute("list", list);
@@ -63,38 +62,37 @@ public class BoardController {
 	@RequestMapping(value = "/content.sp")
 	public String content(HttpServletRequest request, HttpServletResponse response, Model model, BoardVO bvo,
 			PageVO pvo) {
-		Map<String, Object> cmap = boardListService.getArticle(bvo, pvo);
+		bvo = boardListService.getArticle(bvo);
 		/*
 		 * ModelAndView mav = new ModelAndView(); Model도 있고, view 도 있음
 		 * mav.addObject("pvo", pvo); mav.setView("board2/content"); return mav;
 		 */
-		  model.addAttribute("pvo", (PageVO)cmap.get("pvo"));
-		  model.addAttribute("bvo", (BoardVO)cmap.get("bvo"));
+		if (pvo.getCurrentPage() == 0) {
+			pvo.setCurrentPage(1);
+		}
+		model.addAttribute("pvo", pvo);
+		model.addAttribute("bvo", bvo);
 		return "board2/content";
 	}
 
 	@RequestMapping(value = "/writeForm.sp")
 	public String writeForm(HttpServletRequest request, HttpServletResponse response, Model model, BoardVO bvo,
 			PageVO pvo) {
-//		    PageVO pvo2 = boardWriteService.writeArticle(pvo);
-//		    model.addAttribute("pvo", pvo2);
-//		    model.addAttribute("bvo", bvo); //받아온걸다시 넣어주기
+		PageVO pvo2 = boardWriteService.writeArticle(pvo);
+		model.addAttribute("pvo", pvo2);
+		model.addAttribute("bvo", bvo); // 받아온걸다시 넣어주기
 		return "board2/writeForm";
 	}
 
 	@RequestMapping(value = "/writePro.sp")
 	public String writePro(Model model, BoardVO bvo, PageVO pvo, MultipartHttpServletRequest mpRequest) {
-// 		boardWriteService.writeProArticle(bvo, mpRequest);
-// 		logger.info("f"+bvo.getFileNo());
-//		//boardWriteService.writeProArticle(bvo);
-//		 if(pvo.getCurrentPage()==0) {
-//			 pvo.setCurrentPage(1); 
-//		   }
-//		 if(pvo.getCurrPageBlock()==0) {
-//			 pvo.setCurrPageBlock(1);
-//		   }
-//		 
-//		model.addAttribute("pvo", pvo);
+		if (pvo.getCurrentPage() == 0) {
+			pvo.setCurrentPage(1);
+		}
+		logger.info(bvo.toString());
+		boardWriteService.writeProArticle(bvo, mpRequest);
+		// boardWriteService.writeProArticle(bvo);
+		model.addAttribute("pvo", pvo);
 //		
 		return "board2/writePro";
 	}
@@ -107,10 +105,9 @@ public class BoardController {
 	@RequestMapping(value = "/updateForm.sp")
 	public String updateForm(HttpServletRequest request, HttpServletResponse response, Model model, BoardVO bvo,
 			PageVO pvo) {
-//		Map<String, Object> cmap = 
-//				boardListService.getArticle(bvo,pvo);
-//		  model.addAttribute("pvo", (PageVO)cmap.get("pvo"));
-//		  model.addAttribute("bvo", (BoardVO)cmap.get("bvo"));
+		bvo = boardListService.getArticle(bvo);
+		model.addAttribute("pvo", pvo);
+		model.addAttribute("bvo", bvo);
 		return "/board2/updateForm";
 	}
 
@@ -119,20 +116,20 @@ public class BoardController {
 	public String updatePro(MultipartHttpServletRequest mpRequest, Model model, BoardVO bvo, PageVO pvo) {
 
 		// 서비스 호출
-//		PageVO pvo2 = boardWriteService.updatePro(pvo, bvo, mpRequest);
-//		model.addAttribute("pvo", pvo2);
-//		String urlPage= "currentPage="+pvo2.getCurrentPage()+"&currPageBlock="+pvo2.getCurrPageBlock();
-		return "redirect:/boardList.sp?"/* +urlPage */;
+		PageVO pvo2 = boardWriteService.updateProArticle(bvo, pvo, mpRequest);
+		model.addAttribute("pvo", pvo2);
+		String urlPage = "?currentPage=" + pvo2.getCurrentPage();
+		return "redirect:/boardList.sp"/* +urlPage */;
 	}
 
 	@RequestMapping(value = "/deletePro.sp")
 	public String deletePro(Model model, BoardVO bvo, PageVO pvo) {
 		// 서비스 호출
-//		PageVO pvo2 = boardWriteService.deletePro(pvo, bvo.getNum());
-//		model.addAttribute("pvo2", pvo2);
-//		logger.info("pvo2"+pvo2.getCurrentPage());
-//		String urlPage= "currentPage="+pvo2.getCurrentPage()+"&currPageBlock="+pvo2.getCurrPageBlock();
-		return "redirect:/boardList.sp?"/* +urlPage */;
+		PageVO pvo2 = boardWriteService.deleteProArticle(pvo, bvo.getNum());
+		model.addAttribute("pvo2", pvo2);
+		logger.info("pvo2" + pvo2.getCurrentPage());
+		String urlPage = "?currentPage=" + pvo2.getCurrentPage();
+		return "redirect:/boardList.sp"/* +urlPage */;
 	}
 
 	@RequestMapping(value = "/fileDown.sp")

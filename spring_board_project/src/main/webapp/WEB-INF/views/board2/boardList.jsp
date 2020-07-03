@@ -90,7 +90,7 @@ function callContent(num){
 	<!-- 해당 리스트를 출력 jstl 사용-->
 	<form action="content.sp" name="content" method="post">
 		<input type="hidden" name="num" value=''>
-		<input type="hidden" name="currentPage" value='${pvo.currentPage}'>
+		<input type="text" name="currentPage" value='${pvo.currentPage}'>
 	</form>
 </body>
 </html>

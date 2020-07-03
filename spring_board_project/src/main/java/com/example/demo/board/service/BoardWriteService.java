@@ -12,5 +12,5 @@ public interface BoardWriteService {
 	public PageVO writeArticle(PageVO pvo);
 	public void writeProArticle(BoardVO bvo,MultipartHttpServletRequest mprequest);
 	public PageVO updateProArticle(BoardVO bvo, PageVO pvo,MultipartHttpServletRequest mprequest);
-	public PageVO deleteProArticle(BoardVO bvo, PageVO pvo, HttpServletRequest request, HttpServletResponse response);
+	public PageVO deleteProArticle(PageVO pvo, int num);
 }

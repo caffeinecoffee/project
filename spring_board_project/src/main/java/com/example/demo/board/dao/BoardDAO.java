@@ -15,5 +15,5 @@ public interface BoardDAO {
 	public void boardWrite(BoardVO bvo);
 	public int getNewNum();
 	public void boardUpdatePro(BoardVO bvo);
-	public void boardDeletePro(BoardVO bvo);
+	public void boardDeletePro(int num);
 }

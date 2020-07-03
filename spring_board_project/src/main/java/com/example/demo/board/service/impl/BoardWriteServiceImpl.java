@@ -36,12 +36,12 @@ public class BoardWriteServiceImpl implements BoardWriteService {
 	public void writeProArticle(BoardVO bvo, MultipartHttpServletRequest mprequest) {
 
 		if (bvo.getNum() == 0) {
-			bvo.setNum(boardDao.getNewNum() + 1);
-			bvo.setRef(bvo.getNum());
+//			bvo.setNum(boardDao.getNewNum() + 1);
+//			bvo.setRef(bvo.getNum());
 			bvo.setRe_step(1);
 			bvo.setRe_level(1);
 		} else {
-			bvo.setNum(boardDao.getNewNum() + 1);
+//			bvo.setNum(boardDao.getNewNum() + 1);
 			bvo.setRe_step(bvo.getRe_step() + 1);
 			bvo.setRe_level(bvo.getRe_level() + 1);
 		}
@@ -83,12 +83,11 @@ public class BoardWriteServiceImpl implements BoardWriteService {
 	}
 
 	@Override
-	public PageVO deleteProArticle(BoardVO bvo, PageVO pvo, HttpServletRequest request,
-			HttpServletResponse response) {
+	public PageVO deleteProArticle(PageVO pvo, int num) {
 		if (pvo.getCurrentPage() == 0) {
 			pvo.setCurrentPage(1);
 		}
-		boardDao.boardDeletePro(bvo);
+		boardDao.boardDeletePro(num);
 		return pvo;
 	}
 

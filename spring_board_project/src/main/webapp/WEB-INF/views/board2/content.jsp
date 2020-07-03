@@ -55,7 +55,7 @@
 		<input type="hidden" name="re_step" value="${bvo.re_step}">
 		<input type="hidden" name="re_level" value="${bvo.re_level}">
 		
-		<input type="hidden" name="currentPage" value='${pvo.currentPage}'>
+		<input type="text" name="currentPage" value='${pvo.currentPage}'>
 	</form>
 </body>
 </html>

@@ -9,5 +9,5 @@ import com.example.demo.board.dto.PageVO;
 public interface BoardListService {
 	public int getAllcount();
 	public List<BoardVO> getArticles(PageVO pvo);
-	public Map<String, Object> getArticle(BoardVO bvo, PageVO pvo);
+	public BoardVO getArticle(BoardVO bvo);
 }

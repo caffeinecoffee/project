@@ -1,4 +1,4 @@
-package com.example.demo.board.service.impl;
+package com.example.demo.memmgt.service.Impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,26 +10,30 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.board.dao.BoardDAO;
-import com.example.demo.board.dto.BoardVO;
-import com.example.demo.board.dto.PageVO;
-import com.example.demo.board.service.BoardListService;
+import com.example.demo.memmgt.dao.MemberDAO;
+import com.example.demo.memmgt.dto.MemberVO;
+import com.example.demo.memmgt.dto.PageVO;
+import com.example.demo.memmgt.service.SignService;
 
-@Service("boardListService")
-public class BoardListServiceImpl implements BoardListService {
+@Service("signService")
+public class SignServiceImpl implements SignService {
 
-	private static final Logger logger = LoggerFactory.getLogger(BoardListServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(SignServiceImpl.class);
 
 	@Resource
-	BoardDAO boardDao;
-
+	MemberDAO memmgtDAO;
+	
 	@Override
-	public int getAllcount() {
-		return boardDao.getAllcount();
+	public int DataSave(MemberVO mvo) {
+		// TODO Auto-generated method stub
+//		int memSeq = memmgtDAO.MemSeq();
+//		mvo.setMemSeq(memSeq);
+		return memmgtDAO.SaveData(mvo);
 	}
 
 	@Override
-	public List<BoardVO> getArticles(PageVO pvo) {
+	public List<MemberVO> getMembers(PageVO pvo) {
+		// TODO Auto-generated method stub
 		int currentPage;
 		if (pvo.getCurrentPage() == 0) {
 			currentPage = 1;
@@ -38,9 +42,11 @@ public class BoardListServiceImpl implements BoardListService {
 		}
 		pvo.setCurrentPage(currentPage);
 
+		// ��ü ������ ����
 		int allPage = pvo.getAllCount() / pvo.getLinePerPage() + 1;
 		pvo.setAllPage(allPage);
 
+		//
 		int crb = 1;
 		if (currentPage == 1) {
 			pvo.setCurrentPageBlock(crb);
@@ -72,13 +78,32 @@ public class BoardListServiceImpl implements BoardListService {
 		Map<String, Integer> hmap = new HashMap<String, Integer>();
 		hmap.put("start", start);
 		hmap.put("end", end);
-		List<BoardVO> list = boardDao.getArticles(hmap);
+		List<MemberVO> list = memmgtDAO.getMembers(hmap);
 		return list;
 	}
 
-	public BoardVO getArticle(BoardVO bvo) {
-		bvo = boardDao.getArticles(bvo);
-		return bvo;
+	@Override
+	public MemberVO getMember(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return memmgtDAO.getMember(mvo);
 	}
 
+	@Override
+	public MemberVO modifyMember(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		memmgtDAO.modifyMember(mvo);
+		return memmgtDAO.getMember(mvo);
+	}
+
+	@Override
+	public void memberDelete(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		memmgtDAO.deleteMember(mvo);
+	}
+
+	@Override
+	public int idcheck(String id) {
+		// TODO Auto-generated method stub
+		return memmgtDAO.idcheck(id);
+	}
 }
