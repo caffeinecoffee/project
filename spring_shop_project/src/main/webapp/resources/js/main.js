@@ -1,12 +1,12 @@
 $(function() {
 
-	var wformObj = $("form[name='SignPro']");
+	var wformObj = $("form[name='register']");
 
-	$('#submit1').click(function() {
+	$('#register_submit').click(function() {
 		if (fn_valiChk()) {
 			return false;
 		}
-		wformObj.attr("action", "signPro.sa");
+		wformObj.attr("action", "signPro");
 		wformObj.attr("method", "post");
 		wformObj.submit();
 	});
@@ -23,7 +23,6 @@ $(function() {
 			$('font[name=check]').text("비밀번호 같음");
 		}
 	});
-
 	$('#passwd1').keyup(function() {
 		$('font[name=check]').text('');
 		if ($('#passwd1').val() != $('#passwd2').val()) {
@@ -35,34 +34,16 @@ $(function() {
 			$('font[name=check]').text("비밀번호 같음");
 		}
 	});
-
-	$('#up_btn').click(function() {
-		document.SignPro.action = 'membermodify.sa';
-		if (fn_valiChk()) {
-			return false;
-		}
-		document.SignPro.submit();
-	});
-
-	$('#del_btn').click(function() {
-		document.SignPro.action = 'memberdelete.sa';
-		document.SignPro.submit();
-	});
-
-	// $('#list1').click(function() {
-	// document.writePro.action = 'boardList.sp';
-	// document.writePro.submit();
-	// });
-
+	
 	// ajax를 이용한 아이디 중복 확인
 	// propertychange change input paste
-	$("#idchk").on("input", function() {
+	$("#id").on("change", function() {
 		$.ajax({
 			async : true,
 			type : 'post',
-			url : "idcheck.sa",
+			url : "idcheck",
 			data : {
-				"memId" : $("#idchk").val()
+				"memId" : $("#id").val()
 			},
 			dataType : "json",
 			success : function(data) {
@@ -92,7 +73,7 @@ function callMember(memSeq) {
 };
 
 function fn_valiChk() {
-	var regForm = $("form[name='SignPro'] .chk").length;
+	var regForm = $("form[name='register'] .chk").length;
 	for (var i = 0; i < regForm; i++) {
 		if ($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null) {
 			alert($(".chk").eq(i).attr("title") + "은/는 필수입력입니다.");
