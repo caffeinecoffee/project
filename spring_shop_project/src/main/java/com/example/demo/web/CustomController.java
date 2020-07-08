@@ -18,12 +18,10 @@ import com.example.demo.service.MemberService;
 public class CustomController {
 	
 	@Autowired
-	MemberVO member;
-	@Autowired
 	MemberService memberService;
 	
-	@GetMapping("/")
-	public String index(HttpServletRequest request, HttpServletResponse response, Model model, MemberVO member) {
+	@RequestMapping("/")
+	public String index(HttpServletRequest request, HttpServletResponse response, MemberVO member, Model model) {
 		// 세션을 받아서 회원 정보가 있으면 회원정보를 저장
 		HttpSession session = request.getSession();
 		String mem_id = (String) session.getAttribute("idKey");
@@ -45,6 +43,31 @@ public class CustomController {
 		if(member.getMem_id()!=null) {
 			cnt = memberService.idcheck(id);
 		}
+		return cnt;
+	}
+	
+	@RequestMapping (value = "registerPro")
+	public String registerPro(HttpServletRequest request, HttpServletResponse response, MemberVO member, Model model) {
+		int a = memberService.registerPro(member);
+		if (a>0) {
+			model.addAttribute("message", "회원가입 성공");
+		}
+		return "index";
+	}
+	
+	@RequestMapping (value = "login")
+	public String login(HttpServletRequest request, HttpServletResponse response, MemberVO member, Model model) {
+		return "login";
+	}
+	
+	@RequestMapping (value = "passwdcheck")
+	@ResponseBody
+	public int passwdcheck(HttpServletRequest request, HttpServletResponse response, MemberVO member, Model model) {
+		int cnt = 0;
+		if(member.getMem_id()!=null) {
+			cnt = memberService.passwdcheck(member);
+		}
+		System.out.println(cnt);
 		return cnt;
 	}
 }

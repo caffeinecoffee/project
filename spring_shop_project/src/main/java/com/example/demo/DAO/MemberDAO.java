@@ -1,16 +1,13 @@
-package com.example.demo.service;
+package com.example.demo.DAO;
 
-import org.springframework.stereotype.Service;
+import org.apache.ibatis.annotations.Mapper;
 
 import com.example.demo.DTO.MemberVO;
 
-@Service
-public interface MemberService {
+@Mapper
+public interface MemberDAO {
 
 	public int idcheck(String id);
-
 	public int registerPro(MemberVO member);
-
 	public int passwdcheck(MemberVO member);
-
 }
