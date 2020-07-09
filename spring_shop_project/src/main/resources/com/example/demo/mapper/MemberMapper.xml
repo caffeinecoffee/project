@@ -18,4 +18,14 @@
 	<select id="passwdcheck" resultType="int" parameterType="mvo">
 		select count(*) from member where MEM_ID=#{mem_id} and M_PASSWD=#{m_passwd}
 	</select>
+	
+	<select id="selectMember" resultType="mvo" parameterType="String">
+		select * from member where MEM_ID=#{mem_id}
+	</select>
+	
+	<update id="memberUpdate" parameterType="mvo">
+		update member set M_PASSWD=#{m_passwd},M_NAME=#{m_name},M_EMAIL=#{m_email},
+		M_PHONE=#{m_phone},ZIPCODE=#{zipcode},ADDRESS=#{address},M_JOB=#{m_job},ADDRESS2=#{m_job} 
+		where MEM_ID=#{mem_id}
+	</update>
 </mapper>

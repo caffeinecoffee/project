@@ -59,7 +59,7 @@
 </head>
 <body>
 <c:import url="Top.jsp"/>
-	<form action="" name="register" method="post">
+	<form action="registerPro" name="register" method="post">
 		<table>
 			<tr>
 				<th colspan="2">회원가입</th>

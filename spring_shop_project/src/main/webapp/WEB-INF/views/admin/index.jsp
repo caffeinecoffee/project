@@ -8,13 +8,13 @@
 <link href="/resources/css/main.css" rel="stylesheet">
 </head>
 <body>
-	<c:import url="Top.jsp" />
+	<c:import url="adminTop.jsp" />
 	<br>
 	<c:if test="${message!=null}">
 		<script type="text/javascript">
 			alert('${message}');
 		</script>
 	</c:if>
-	<c:import url="Bottom.jsp" />
+	<c:import url="adminBottom.jsp" />
 </body>
 </html>

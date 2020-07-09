@@ -10,4 +10,6 @@ public interface MemberDAO {
 	public int idcheck(String id);
 	public int registerPro(MemberVO member);
 	public int passwdcheck(MemberVO member);
+	public MemberVO selectMember(String mem_id);
+	public void memberUpdate(MemberVO member);
 }

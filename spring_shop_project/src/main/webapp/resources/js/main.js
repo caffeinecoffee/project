@@ -1,7 +1,7 @@
 $(function() {
 
 	var wformObj = $("form[name='register']");
-	var idck = false;
+	var idck = true;
 
 	$('#register_submit').click(function() {
 		var regForm = $("form[name='register'] .chk").length;

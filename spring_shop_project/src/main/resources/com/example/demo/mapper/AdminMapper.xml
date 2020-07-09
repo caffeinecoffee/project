@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.DAO.AdminDAO">
+
+	<select id="loginpro" resultType="int" parameterType="mvo">
+		select count(*) from admin where admin_id=#{admin_id} and admin_passwd=#{admin_passwd}
+	</select>
+	<!-- <select id="idcheck" resultType="int" parameterType="String"> -->
+	<!-- select count(*) from member where MEM_ID=#{mem_id} -->
+	<!-- </select> -->
+	<!-- <insert id="registerPro" parameterType="mvo"> -->
+	<!-- <selectKey resultType="int" order="AFTER"> -->
+	<!-- select count(*) from member where MEM_ID=#{mem_id} -->
+	<!-- </selectKey> -->
+	<!-- insert into -->
+	<!-- member(MEM_ID,M_PASSWD,M_NAME,M_EMAIL,M_PHONE,ZIPCODE,ADDRESS,M_JOB,ADDRESS2) -->
+	<!-- values -->
+	<!-- (#{mem_id},#{m_passwd},#{m_name},#{m_email},#{m_phone},#{zipcode},#{address},#{m_job},#{address2}) -->
+	<!-- </insert> -->
+	<!-- <select id="selectMember" resultType="mvo" parameterType="String"> -->
+	<!-- select * from member where MEM_ID=#{mem_id} -->
+	<!-- </select> -->
+	<!-- <update id="memberUpdate" parameterType="mvo"> -->
+	<!-- update member set M_PASSWD=#{m_passwd},M_NAME=#{m_name},M_EMAIL=#{m_email}, -->
+	<!-- M_PHONE=#{m_phone},ZIPCODE=#{zipcode},ADDRESS=#{address},M_JOB=#{m_job},ADDRESS2=#{m_job} -->
+	<!-- where MEM_ID=#{mem_id} -->
+	<!-- </update> -->
+</mapper>

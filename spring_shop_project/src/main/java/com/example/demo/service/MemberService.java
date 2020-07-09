@@ -13,4 +13,8 @@ public interface MemberService {
 
 	public int passwdcheck(MemberVO member);
 
+	public MemberVO selectMember(String mem_id);
+
+	public void memberUpdate(MemberVO member);
+
 }

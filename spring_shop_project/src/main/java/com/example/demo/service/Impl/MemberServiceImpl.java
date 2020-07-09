@@ -28,4 +28,14 @@ public class MemberServiceImpl implements MemberService {
 	public int passwdcheck(MemberVO member) {
 		return memberDAO.passwdcheck(member);
 	}
+
+	@Override
+	public MemberVO selectMember(String mem_id) {
+		return memberDAO.selectMember(mem_id);
+	}
+
+	@Override
+	public void memberUpdate(MemberVO member) {
+		memberDAO.memberUpdate(member);
+	}
 }
