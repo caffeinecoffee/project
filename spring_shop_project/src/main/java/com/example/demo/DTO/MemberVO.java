@@ -19,4 +19,5 @@ public class MemberVO {
 	private String address;
 	private String m_job;
 	private String address2;
+	private String m_role;
 }

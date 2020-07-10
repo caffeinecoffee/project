@@ -1,5 +1,7 @@
 package com.example.demo.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,7 +17,7 @@ import com.example.demo.DTO.MemberVO;
 import com.example.demo.service.MemberService;
 
 @Controller
-public class CustomController {
+public class MemberController {
 
 	@Autowired
 	MemberService memberService;
@@ -60,21 +62,26 @@ public class CustomController {
 		return "login";
 	}
 
-	@RequestMapping(value = "passwdcheck")
-	@ResponseBody
-	public int passwdcheck(HttpServletRequest request, HttpServletResponse response, MemberVO member, Model model) {
-		int cnt = 0;
+	@RequestMapping(value = "loginPro")
+	public String loginPro(HttpServletRequest request, HttpServletResponse response, MemberVO member, Model model) {
+		member = memberService.loginPro(member);
 		HttpSession session = request.getSession();
-		if (member.getMem_id() != null) {
-			cnt = memberService.passwdcheck(member);
-		}
-		if (cnt > 0) {
+		String url = "/";
+		if (member != null) {
+			if (member.getM_role() != null) {
+				url = "/admin/index";
+			}
 			model.addAttribute("message", "로그인 성공");
-			session.setAttribute("idKey", member.getMem_id());
-		} else if (cnt == 0) {
-			model.addAttribute("message", "로그인 실패");
+		} else {
+			model.addAttribute("message", "아이디 또는 비밀번호가 잘못되었습니다.");
+			url = "login";
 		}
-		return cnt;
+		if (member != null) {
+			session.setAttribute("member", member);
+			session.setAttribute("idKey", member.getMem_id());
+		}
+		session.setAttribute("url", url);
+		return "MsgPage";
 	}
 
 	@RequestMapping(value = "logout")
@@ -84,21 +91,53 @@ public class CustomController {
 		session.invalidate();
 		return "index";
 	}
-	
+
 	@RequestMapping(value = "/memberUpdate")
 	public String memberUpdate(HttpServletRequest request, HttpServletResponse response, MemberVO member, Model model) {
 		HttpSession session = request.getSession();
-		String mem_id = (String) session.getAttribute("idKey");
-		member = memberService.selectMember(mem_id);
+		MemberVO mvo = (MemberVO) session.getAttribute("member");
+		if (mvo.getM_role() == null) {
+			member = memberService.selectMember(mvo.getMem_id());
+			model.addAttribute("mRole", null);
+		} else if (mvo.getM_role().equals("admin")) {
+			member = memberService.selectMember(member.getMem_id());
+			model.addAttribute("mRole", "admin");
+		}
 		model.addAttribute("mvo", member);
 		return "memberUpdate";
 	}
-	
+
 	@RequestMapping(value = "/memberUpdatePro")
-	public String memberUpdatePro(HttpServletRequest request, HttpServletResponse response, MemberVO member, Model model) {
+	public String memberUpdatePro(HttpServletRequest request, HttpServletResponse response, MemberVO member,
+			Model model) {
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO) session.getAttribute("member");
+		if (mvo.getM_role() == null) {
+			member = memberService.selectMember(mvo.getMem_id());
+			memberService.memberUpdate(member);
+		} else if (mvo.getM_role().equals("admin")) {
+			member = memberService.selectMember(member.getMem_id());
+			memberService.memberUpdate(member);
+			return "/admin/index";
+		}
+		return "index";
+	}
+
+	@RequestMapping(value = "/memberMgr")
+	public String mamberMgr(HttpServletRequest request, HttpServletResponse response, MemberVO member, Model model) {
+		List<MemberVO> list = memberService.memberMgr();
+		model.addAttribute("list", list);
+		System.out.println(list.size());
+		return "/admin/memberMgr";
+	}
+
+	@RequestMapping(value = "/registerWithdrawal")
+	public String registerWithdrawal(HttpServletRequest request, HttpServletResponse response, MemberVO member,
+			Model model) {
 		HttpSession session = request.getSession();
 		String mem_id = (String) session.getAttribute("idKey");
-		memberService.memberUpdate(member);
+		int a = memberService.registerWithdrawal(mem_id);
+		session.invalidate();
 		return "index";
 	}
 }

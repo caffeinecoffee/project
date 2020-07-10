@@ -13,7 +13,12 @@
 <link href="/resources/css/main.css" rel="stylesheet">
 </head>
 <body>
-<c:import url="Top.jsp"/>
+<c:if test="${mRole==null}">
+	<c:import url="Top.jsp"/>
+</c:if>
+<c:if test="${mRole=='admin'}">
+	<c:import url="./admin/adminTop.jsp" />
+</c:if>
 	<form action="memberUpdatePro" name="register" method="post">
 		<table>
 			<tr>
@@ -80,6 +85,7 @@
 			<tr>
 				<td colspan="2">
 					<input type="submit" id="register_submit" value="정보수정" class="" />
+					<input type="submit" id="register_withdrawal_submit" value="탈퇴" class="" />
 					<input type="reset" value="다시쓰기" class="" />
 				</td>
 			</tr>

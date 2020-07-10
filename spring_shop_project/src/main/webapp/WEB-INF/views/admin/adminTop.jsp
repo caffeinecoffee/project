@@ -4,16 +4,18 @@
 	<tr>
 		<c:choose>
 			<c:when test="${idKey==null}">
-				<th><a href="/login">로그인</a></th>
-				<th><a href="/register">회원가입</a></th>
+				<script type="text/javascript">
+					alert("로그인이 필요합니다.");
+					location.href = "/";
+				</script>
 			</c:when>
 			<c:otherwise>
+				<th><a href="/admin/index">홈</a></th>
 				<th><a href="/logout">로그아웃</a></th>
-				<th><a href="/memberUpdate">회원수정</a></th>
+				<th><a href="/memberMgr">화원관리</a></th>
+				<th><a href="/productMgr">상품관리</a></th>
+				<th><a href="/oderMgr">주문관리</a></th>
 			</c:otherwise>
 		</c:choose>
-		<th><a href="/productList">상품목록</a></th>
-		<th><a href="/cartList">장바구니</a></th>
-		<th><a href="/orderList">구매목록</a></th>
 	</tr>
 </table>

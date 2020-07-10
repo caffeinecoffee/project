@@ -3,21 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="EUC-KR">
 <title>Insert title here</title>
-<link href="/resources/css/main.css" rel="stylesheet">
 </head>
 <body>
-	<c:import url="Top.jsp" />
-	<br>
 	<c:if test="${message!=null}">
 		<script type="text/javascript">
-			alert('${message}');
+			var message = '${message}';
+			alert(message);
 		</script>
 	</c:if>
-	<c:if test="${inKey!=null}">
-		<b>${member.m_name }님으로 로그인 되었습니다.</b>
-	</c:if>
-	<c:import url="Bottom.jsp" />
+	<script type="text/javascript">
+		var url = "${url}"
+		if(url.length==0 || url==null || url=="") url ='/';
+		document.location.href=url;
+	</script>
 </body>
 </html>

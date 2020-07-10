@@ -14,7 +14,7 @@
 </head>
 <body>
 <c:import url="Top.jsp"/>
-	<form action="" name="login" method="post">
+	<form action="loginPro" name="login" method="post">
 		<table>
 			<tr>
 				<th colspan="2">로그인</th>

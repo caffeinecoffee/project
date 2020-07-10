@@ -1,6 +1,4 @@
 $(function() {
-
-	var wformObj = $("form[name='register']");
 	var idck = true;
 
 	$('#register_submit').click(function() {
@@ -17,7 +15,11 @@ $(function() {
 			$("#warning").focus();
 			return false;
 		}
-		wformObj.attr("action", "registerPro");
+		$("form[name='register']").submit();
+	});
+
+	$('#register_withdrawal_submit').click(function() {
+		wformObj.attr("action", "registerWithdrawal");
 		wformObj.attr("method", "post");
 		wformObj.submit();
 	});
@@ -89,34 +91,13 @@ $(function() {
 			$("#log_passwd").focus();
 			return false;
 		}
-
-		$.ajax({
-			async : true,
-			type : 'post',
-			url : "passwdcheck",
-			data : {
-				"mem_id" : $("#log_id").val(),
-				"m_passwd" : $("#log_passwd").val()
-			},
-			dataType : "json",
-			success : function(data) {
-				if (data > 0) {
-					alert("로그인 성공 하였습니다.");
-					$("form[name='login']").attr("action", "/");
-					$("form[name='login']").attr("method", "post");
-					$("form[name='login']").submit();
-				} else {
-					alert("로그인에 실패 하였습니다.");
-					return false; // idck 1이 아니면 submit못하게 하려고
-				}
-			},
-			error : function(error) {
-				alert("error");
-				return false
-			}
-		});
 	});
 });
+
+function Update(number) {
+	$("#mem_id").val(number);
+	$("form[name='AdminMemberUpdate']").submit();
+};
 
 function callMember(memSeq) {
 	document.memberInformation.memSeq.value = memSeq;
