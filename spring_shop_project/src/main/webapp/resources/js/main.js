@@ -19,9 +19,9 @@ $(function() {
 	});
 
 	$('#register_withdrawal_submit').click(function() {
-		wformObj.attr("action", "registerWithdrawal");
-		wformObj.attr("method", "post");
-		wformObj.submit();
+		$("form[name='register']").attr("action", "registerWithdrawal");
+		$("form[name='register']").attr("method", "post");
+		$("form[name='register']").submit();
 	});
 
 	$('#passwd2').keyup(function() {
@@ -98,6 +98,18 @@ function Update(number) {
 	$("#mem_id").val(number);
 	$("form[name='AdminMemberUpdate']").submit();
 };
+
+function productDetail(no){
+	$("#no").val(no);
+	$("form[name='product']").attr("action", "/productInsert");
+	$("form[name='product']").attr("method", "post");
+	$("form[name='product']").submit();
+}
+
+function productBasket(no){
+	$("#mem_id").val(no);
+$("form[name='AdminMemberUpdate']").submit();
+}
 
 function callMember(memSeq) {
 	document.memberInformation.memSeq.value = memSeq;

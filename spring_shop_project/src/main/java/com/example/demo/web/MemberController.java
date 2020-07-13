@@ -79,6 +79,7 @@ public class MemberController {
 		if (member != null) {
 			session.setAttribute("member", member);
 			session.setAttribute("idKey", member.getMem_id());
+			session.setAttribute("mRole", member.getM_role());
 		}
 		session.setAttribute("url", url);
 		return "MsgPage";
@@ -98,10 +99,8 @@ public class MemberController {
 		MemberVO mvo = (MemberVO) session.getAttribute("member");
 		if (mvo.getM_role() == null) {
 			member = memberService.selectMember(mvo.getMem_id());
-			model.addAttribute("mRole", null);
 		} else if (mvo.getM_role().equals("admin")) {
 			member = memberService.selectMember(member.getMem_id());
-			model.addAttribute("mRole", "admin");
 		}
 		model.addAttribute("mvo", member);
 		return "memberUpdate";
@@ -111,33 +110,45 @@ public class MemberController {
 	public String memberUpdatePro(HttpServletRequest request, HttpServletResponse response, MemberVO member,
 			Model model) {
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO) session.getAttribute("member");
-		if (mvo.getM_role() == null) {
-			member = memberService.selectMember(mvo.getMem_id());
+		String role = (String) session.getAttribute("mRole");
+		if (role == null) {
 			memberService.memberUpdate(member);
-		} else if (mvo.getM_role().equals("admin")) {
-			member = memberService.selectMember(member.getMem_id());
+		} else if (role.equals("admin")) {
 			memberService.memberUpdate(member);
 			return "/admin/index";
 		}
 		return "index";
 	}
 
-	@RequestMapping(value = "/memberMgr")
-	public String mamberMgr(HttpServletRequest request, HttpServletResponse response, MemberVO member, Model model) {
-		List<MemberVO> list = memberService.memberMgr();
-		model.addAttribute("list", list);
-		System.out.println(list.size());
-		return "/admin/memberMgr";
-	}
-
 	@RequestMapping(value = "/registerWithdrawal")
 	public String registerWithdrawal(HttpServletRequest request, HttpServletResponse response, MemberVO member,
 			Model model) {
 		HttpSession session = request.getSession();
-		String mem_id = (String) session.getAttribute("idKey");
-		int a = memberService.registerWithdrawal(mem_id);
-		session.invalidate();
+		String mem_id = member.getMem_id();
+		String role = (String) session.getAttribute("mRole");
+		if (role == null) {
+			int a = memberService.registerWithdrawal(mem_id);
+			session.invalidate();
+		} else if (role.equals("admin")) {
+			int a = memberService.registerWithdrawal(mem_id);
+			return "/admin/index";
+		}
 		return "index";
+	}
+	
+	
+	
+	//관리자
+	@RequestMapping(value = "/memberMgr")
+	public String memberMgr(HttpServletRequest request, HttpServletResponse response, MemberVO member, Model model) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("mRole")==null) {
+			model.addAttribute("message", "권한이 없습니다.");
+			return "MsgPage";
+		}
+		List<MemberVO> list = memberService.memberMgr();
+		model.addAttribute("list", list);
+		System.out.println(list.size());
+		return "/admin/memberMgr";
 	}
 }

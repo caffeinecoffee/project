@@ -12,7 +12,7 @@
 				<th><a href="/memberUpdate">회원수정</a></th>
 			</c:otherwise>
 		</c:choose>
-		<th><a href="/productList">상품목록</a></th>
+		<th><a href=/productList>상품목록</a></th>
 		<th><a href="/cartList">장바구니</a></th>
 		<th><a href="/orderList">구매목록</a></th>
 	</tr>

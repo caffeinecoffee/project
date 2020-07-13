@@ -20,25 +20,26 @@
 			</tr>
 			<tr>
 				<td>상품 이름</td>
-				<td><input type="text" name="name" id="name" title="아이디" value="" class="chk" />
+				<td><input type="text" name="name" id="name" title="아이디" value='<c:out value="${pvo.name}"/>' class="chk" />
 				<font id="warning" size="2" color="red" ></font></td>
+				<td><input type="hidden" name="no" value='<c:out value="${pvo.no}"/>'/></td>
 			</tr>
 			<tr>
 				<td>상품 설명</td>
-				<td><textarea type="password" name="detail" id="detail" title="설명" value="" class="chk" ></textarea></td>
+				<td><textarea type="password" name="detail" id="detail" title="설명" value='${pvo.detail}' class="chk" ></textarea></td>
 			</tr>
 			<tr>
 				<td>상품 가격</td>
-				<td><input type="text" name="price" id="price" title="가격" value="" class="chk" />
+				<td><input type="text" name="price" id="price" title="가격" value='${pvo.price}' class="chk" />
 				<font name="check" color="red"></font></td>
 			</tr>
 			<tr>
 				<td>상품 수량</td>
-				<td><input type="text" name="stock" id="stock" title="수량" value="" class="chk" /></td>
+				<td><input type="text" name="stock" id="stock" title="수량" value='<c:out value="${pvo.stock}"/>' class="chk" /></td>
 			</tr>
 			<tr>
 				<td>이미지 첨부</td>
-				<td><input type="file" name="image" id="image" title="이미지" value=""/></td>
+				<td><input type="file" name="image" id="image" title="이미지" value=''/></td>
 			</tr>
 			<tr>
 				<td><input type="submit" name="productInsertPro" value="등록"/></td>
@@ -46,6 +47,7 @@
 			<tr>
 				<c:import url="adminBottom.jsp" />
 			</tr>
+			
 		</table>
 	</form>
 </body>

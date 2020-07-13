@@ -13,7 +13,7 @@
 				<th><a href="/admin/index">홈</a></th>
 				<th><a href="/logout">로그아웃</a></th>
 				<th><a href="/memberMgr">화원관리</a></th>
-				<th><a href="/productMgr">상품관리</a></th>
+				<th><a href="/productList">상품관리</a></th>
 				<th><a href="/oderMgr">주문관리</a></th>
 			</c:otherwise>
 		</c:choose>

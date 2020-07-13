@@ -85,7 +85,7 @@
 			<tr>
 				<td colspan="2">
 					<input type="submit" id="register_submit" value="정보수정" class="" />
-					<input type="submit" id="register_withdrawal_submit" value="탈퇴" class="" />
+					<input type="button" id="register_withdrawal_submit" value="탈퇴" class="" />
 					<input type="reset" value="다시쓰기" class="" />
 				</td>
 			</tr>
