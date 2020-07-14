@@ -23,7 +23,7 @@
 			<table>
 				<tbody>
 					<tr>
-						<th><strong>상품이 없습니다.</strong></th>
+						<th><strong>장바구니가 비있습니다.</strong></th>
 					</tr>
 				</tbody>
 			</table>
@@ -32,40 +32,37 @@
 			<table>
 				<thead>
 					<tr>
-						<th>이름</th>
+						<th>제품</th>
+						<th>수량</th>
 						<th>가격</th>
-						<th>날짜</th>
-						<th>재고</th>
+						<th>수정/삭제</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="pvo" items="${list}">
-						<input type="hidden" id="no" name='no' value="${pvo.no }">
+					<c:forEach var="ovo" items="${list}">
+						<input type="hidden" id="no" name='no' value="${ovo.no }">
 						<tr>
-							<td><c:out value="${pvo.name}" /></td>
-							<td><c:out value="${pvo.price}" /></td>
-							<td><c:out value="${pvo.pr_date}" /></td>
-							<td><c:out value="${pvo.stock}" /></td>
-							<c:if test="${mRole=='admin'}">
-								<td><a href="javascript:productDetail('${pvo.no}')">상품 수정</a></td>
-							</c:if>
-							<c:if test="${mRole==null}">
-								<td><a href="javascript:productBasket('${pvo.no}')">장바구니 담기</a></td>
-							</c:if>
+							<td><c:out value="${ovo.name}" /></td>
+							<td><c:out value="${ovo.QUANTITY}" /></td>
+							<td><c:out value="${ovo.price}" /></td>
+							<td><input type="hidden" name="no" id="no" /> <input
+								type="hidden" name="no" id="no" /></td>
+							<td><a href="javascript:productDetail('${pvo.no}')">상세보기</a></td>
 						</tr>
 					</c:forEach>
 					<tr>
-						<td><a href="productInsert">상품등록</a></td>
+						<td>총 금액 : <c:out value=""/>원</td>
+						<td><a href="javascript:productDetail('${pvo.no}')">상세보기</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</c:when>
 	</c:choose>
-	
+
 	<form name="product" action="" method="post">
 		<input type="hidden" name="no" id="no" />
 	</form>
-	
+
 	<c:if test="${mRole==null}">
 		<c:import url="Bottom.jsp" />
 	</c:if>

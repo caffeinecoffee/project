@@ -16,5 +16,6 @@ public class ProductVO {
 	private String detail;
 	private String pr_date;
 	private String stock;
-	private String image;
+	private String image="";
+	private final String path = "C:/Users/cabs0/Downloads";
 }

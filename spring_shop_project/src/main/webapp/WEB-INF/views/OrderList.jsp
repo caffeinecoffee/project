@@ -23,7 +23,7 @@
 			<table>
 				<tbody>
 					<tr>
-						<th><strong>상품이 없습니다.</strong></th>
+						<th><strong>주문내역이 없습니다.</strong></th>
 					</tr>
 				</tbody>
 			</table>
@@ -32,25 +32,30 @@
 			<table>
 				<thead>
 					<tr>
-						<th>이름</th>
-						<th>가격</th>
-						<th>날짜</th>
-						<th>재고</th>
+						<th>주문번호</th>
+						<th>주문자</th>
+						<th>제품번호</th>
+						<th>주문수량</th>
+						<th>주문날짜</th>
+						<th>주문상태</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="pvo" items="${list}">
-						<input type="hidden" id="no" name='no' value="${pvo.no }">
+					<c:forEach var="ovo" items="${list}">
+						<input type="hidden" id="no" name='no' value="${ovo.no }">
 						<tr>
-							<td><c:out value="${pvo.name}" /></td>
-							<td><c:out value="${pvo.price}" /></td>
-							<td><c:out value="${pvo.pr_date}" /></td>
-							<td><c:out value="${pvo.stock}" /></td>
+							<td><c:out value="${ovo.no}" /></td>
+							<td><c:out value="${ovo.m_name}" /></td>
+							<td><c:out value="${ovo.product_no}" /></td>
+							<td><c:out value="${ovo.quantity}" /></td>
+							<td><c:out value="${ovo.or_date}" /></td>
+							<td><c:out value="${ovo.state}" /></td>
 							<c:if test="${mRole=='admin'}">
-								<td><a href="javascript:productDetail('${pvo.no}')">상품 수정</a></td>
+								<td><a href="javascript:productDetail('${ovo.no}')">상품 수정</a></td>
 							</c:if>
 							<c:if test="${mRole==null}">
-								<td><a href="javascript:productBasket('${pvo.no}')">장바구니 담기</a></td>
+								<td><a href="javascript:productBasket('${ovo.no}')">장바구니
+										담기</a></td>
 							</c:if>
 						</tr>
 					</c:forEach>

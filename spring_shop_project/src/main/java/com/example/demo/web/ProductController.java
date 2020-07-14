@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.DTO.MemberVO;
 import com.example.demo.DTO.ProductVO;
 import com.example.demo.service.ProductService;
 
@@ -27,7 +30,6 @@ public class ProductController {
 	//관리자
 	@RequestMapping(value = "/productList")
 	public String productList(HttpServletRequest request, HttpServletResponse response, ProductVO pvo, Model model) {
-		HttpSession session = request.getSession();
 		List<ProductVO> list = productService.productMgr();
 		model.addAttribute("list", list);
 		return "productList";
@@ -66,4 +68,30 @@ public class ProductController {
 		}
 		return "MsgPage";
 	}
+	
+//	@RequestMapping("/productInsertProc")
+//	public String productInsertProc(HttpServletRequest request, HttpServletResponse response,
+//			@RequestParam("image2") MultipartFile file, ProductVO pvo, Model model) {
+//		
+//		HttpSession session = request.getSession();
+//		MemberVO adminDto = (MemberVO) session.getAttribute("adminDto");
+//		int r = 0;
+//		String flag = request.getParameter("flag");
+//		String msg = null;
+//		String url = null;
+//		if(flag.equals("insert")) { //등록
+//			r = productService.insertProduct(pvo, file);
+//			if(r>0) {
+//				msg="상품등록성공";
+//				url="/productMgr";
+//			}else {
+//				msg="상품등록실패";
+//				url="/";
+//			}
+//		}
+//		model.addAttribute("msg", msg);
+//		model.addAttribute("url", url);
+//		session.setAttribute("adminDto", adminDto);
+//		return "";
+//	}
 }

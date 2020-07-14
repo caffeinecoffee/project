@@ -25,4 +25,26 @@ public class ProductServiceImpl implements ProductService {
 	public int productInsertPro(ProductVO pvo) {
 		return productDAO.productInsertPro(pvo);
 	}
+	
+//	@Override
+//	public int insertProduct(ProductDTO pdto, MultipartFile file) {
+//		
+//		String sourceFileName = file.getOriginalFilename();
+//		File destinationFile;
+//		 if(sourceFileName == null || sourceFileName.length()==0) {
+//			 pdto.setImage("ready.gif");
+//		 }else {
+//			 pdto.setImage(sourceFileName);
+//			 destinationFile = new File(pdto.getPath()+sourceFileName);
+//			 destinationFile.getParentFile().mkdirs();
+//			 	try {
+//			 		file.transferTo(destinationFile);
+//			 	} catch (IllegalStateException e) {
+//			 		e.printStackTrace();
+//			 	} catch (IOException e) {
+//			 		e.printStackTrace();
+//			 	}
+//		 }
+//		return adminDao.insertProduct(pdto);
+//	}
 }

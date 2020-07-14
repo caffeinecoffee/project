@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.DAO.OrderDAO">
+	<select id="orderList" resultType="ovo">
+		
+		SELECT A.*
+			FROM ( SELECT O.NO, O.PRODUCT_NO, P.NAME PNAME, O.QUANTITY, O.OR_DATE, 
+					O.STATE, O.ID, M.M_NAME MNAME, P.PRICE FROM SHOP_ORDER O
+						INNER JOIN SHOP_PRODUCT P
+		 					ON O.PRODUCT_NO = P.NO
+						INNER JOIN MEMBER M
+		 					ON O.ID = M.MEM_ID
+		 					order by O.NO) A
+		 					
+		 <choose>
+		 	<when test ="no!=null">
+		 		WHERE NO = #{no}
+		 	</when>		 
+		 </choose>
+	</select>
+</mapper>
