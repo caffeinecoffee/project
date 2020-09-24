@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pmjsmj.DAO.PointDAO">
+	<select id="getPointDTO" parameterType="mdto" resultType="pointDTO">
+	select POINT_NO,POINT,POINT_SPENT,POINT_CHARGED,
+       POINT_DATE,POINT_CONTENT,MEM_ID 
+       from point where mem_id = #{mem_id} and 
+       point_date = (select max(point_date) from point 
+                       where mem_id=#{mem_id})
+	
+	</select>
+</mapper>

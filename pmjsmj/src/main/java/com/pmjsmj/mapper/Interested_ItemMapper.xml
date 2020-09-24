@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pmjsmj.DAO.Interested_ItemDAO">
+	<select id="getItems" parameterType="HashMap" resultType="interestedDTO">
+		select *
+			from(select rownum rr, a.*
+    					from(select ITEM_NO,MEM_ID
+									from interested_item where mem_id=#{mdto.mem_id})a)b 
+			where rr BETWEEN #{start} and #{end}
+	</select>
+	<delete id="deleteInterItem" parameterType="interestedDTO">
+		delete from interested_item where mem_id=#{mem_id} and item_no = #{item_no} 
+	</delete>
+	<delete id="selectDeleteInterItem">
+	delete from interested_item where
+    <foreach collection="list" item="interestedDTO" separator="OR">
+        (mem_id=#{interestedDTO.mem_id} and item_no = #{interestedDTO.item_no})
+    </foreach>
+	</delete>
+	<select id="getAllCount" parameterType="mdto" resultType="Integer">
+		select count(item_no) from interested_item where mem_id = #{mem_id}
+	</select>
+</mapper>

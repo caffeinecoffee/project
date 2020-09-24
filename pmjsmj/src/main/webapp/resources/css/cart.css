@@ -1,0 +1,278 @@
+@charset "UTF-8";
+
+/* 0.common style(공통적용)start*/
+table{
+/* 	width: 1200px; */
+	width: 960px;
+	margin:auto;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin-left: 100px;
+}
+table {
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+    border: 0px solid #ccc;
+    margin: 20px 10px;
+
+}
+table td{	
+    vertical-align: middle;
+}
+table thead {
+    border-right: 0px solid #ccc;
+    border-left: 0px solid #ccc;
+    background-color: #b0b435;
+}
+table thead th {
+	width: 350px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+}
+table tbody th {
+    width: 350px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 0px solid #ccc;
+    background: #fcf1f4;
+}
+table td {
+/*     width: 350px; */
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+input{
+	border:0.5px solid;
+	border-color: #BDBDBD;
+	text-align: center;
+}
+button {
+  background-color: #f1f1f1;
+  color: #5a5c59;
+/*   #5a5c59 */
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  font-family: 'Jua', sans-serif;
+  letter-spacing: 3px;
+  }
+button:hover{
+	background-color: #BDBDBD;
+	color: white;
+}
+/*space 적용 .jsp ==>  order / orderRefund  */
+/* #space{ */
+/* 	color: white; */
+/* } */
+/*위아래 칸띄우기(cartDetail.jsp)*/
+
+#space-div{
+	width: 10px;
+	height: 10px;
+}
+input:focus {
+	outline:0.5px solid #b0b435;
+}
+textarea:focus {
+	outline:0.5px solid #b0b435;
+}
+
+
+/* 0.common style(공통적용)end*/
+/*----------------------------------*/
+
+/* 1.cartDetail_장바구니상세 페이지 start*/
+/* .cartdetailList-wrap{
+	margin-left: 480px;
+} */
+.cartdetailList-title{
+	margin-top: 50px;
+	margin-left: 460px;
+}
+.cartdetailList-title h3{
+	font-size: 25px;
+	font-weight: bold;
+	font-family: 'Noto Serif KR', serif;
+    color: #585858;
+}
+.cartdetailList{
+	margin-left: 460px;
+	width: 960px;
+	height: 200px;
+}
+.cartDetail-totalsummary{
+	margin-top: 100px;
+	margin-left: 460px;
+	width: 960px;
+	height: 200px;
+}
+input .numBox{
+	width: 10px;
+}
+/* id값 따로 줌 */
+.cartDetail-shopping-btn-box{
+	margin-top: 50px;
+	margin-left: 840px;
+}
+/* 1.cartDetail_장바구니상세 페이지 end*/
+/*----------------------------------*/
+
+/* 2.order_주문/결제 페이지 start*/
+.order-boardwite table thead{
+    background-color: #848484;
+}
+.order-area{
+	margin-top: 40px;
+	margin-left: 450px;
+}
+.order-area table{
+	margin-top: 80px;
+}
+.order-title{
+	margin-top: 50px;
+	margin-left: 460px;
+}
+.order-title h3{
+	font-size: 25px;
+	font-weight: bold;
+	font-family: 'Noto Serif KR', serif;
+    color: #585858;
+}
+.order-boardwite table td{
+	border-bottom: 0px;
+}
+#order-wrap{
+	margin: 20px 10px;
+}
+.order-boardlist{
+	margin-left: 460px;
+}
+.order-shopping-btn-box{
+	margin-top: 50px;
+    margin-left: 840px;
+}
+
+.cardChoice{
+	display: none;
+}
+.cardNum{
+	display: none;
+}
+/* .order-boardwite-test{ */
+/* 	display: none */
+/* } */
+/* 2.order_주문/결제 페이지 end*/
+/*----------------------------------*/
+
+/* 3.orderComplete_주문완료 페이지 start */
+.orderComplete-wrap{
+	
+}
+#cartimg-box{
+	margin-top: 100px;
+	margin-bottom: 100px;
+	margin-left: 725px;
+}
+
+#cartimg{
+	margin-left: 81px;
+	width: 20%;
+}
+img{
+	width: 100%;
+}
+.orderComplete-title h3{
+	margin-top: 50px;
+	margin-left: 531px;
+	font-size: 25px;
+    font-weight: bold;
+    color: #585858;
+    font-family: 'Noto Serif KR', serif;
+}
+#orderComplete-box{
+	margin-top: 50px;
+	margin-left: 553px;
+}
+#orderComplete-box table{
+	width: 60%;
+	height: 200px;	
+}
+#line-box{
+	margin-left: 531px;
+	margin-top: 23px;
+	margin-bottom: 50px;
+	border: 0.1px solid #C4C8C8;
+	width: 45%;
+}
+.shopping-btn-box{
+	margin-top: 50px;
+	margin-left: 819px;
+}
+/* 3.orderComplete_주문완료 페이지 end  */
+/*----------------------------------*/
+
+/* 4.orderRefund_주문취소 페이지 start*/
+.orderRefund-boardlist table{
+	float: left;
+	margin-left: 100px;
+}
+#order-line{
+	border-left: #585858;
+}
+.orderRefund-wrap{
+	margin-left: 500px;
+}
+.orderRefund-boardlist{
+	width: 960px;
+}
+.orderRefund-all-box{
+	margin-left: 269px;
+}
+.refund-btn-box{
+	margin-top: 80px;
+	margin-left: 887px;
+}
+#refund-info{
+	margin-top: 80px;
+}
+/* 4.orderRefund_주문취소 페이지 end*/
+/*----------------------------------*/
+
+/* 5.refundList_환불내역 페이지 start*/
+.refundList-wrap{
+	margin-left: 269px;	
+}
+.refundList-table{
+	width: 70%;	
+}
+.refundList-box{
+/* 	margin-left:269px; */
+	width: 960px;
+}
+.refundList-boardlist{
+/* 	margin-left: 509px; */
+	width: 960px;
+}
+
+
+
+/* 5.refundList_환불내역 페이지 end*/
+/*---------------------------------*/
+
+
+/*common_CSS*/
+/*cartDetail_CSS*/
+/*order_CSS*/
+/*orderComplete_CSS*/
+/*orderRefund_CSS*/
+/*refundList_CSS*/
+
