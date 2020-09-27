@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+     "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+	</settings>
+	<!-- aliaes -->
+    <typeAliases>
+         <typeAlias alias="HashMap" type="java.util.HashMap" />
+         <typeAlias alias="Htable" type="java.util.Hashtable" />
+         <typeAlias alias="List" type="java.util.List" />
+         <typeAlias alias="String" type="java.lang.String" />
+         <typeAlias alias="map" type="java.util.Map" />
+         <typeAlias alias="idto" type="com.example.DTO.ItemDTO" />
+<!--          <typeAlias alias="iodto" type="com.example.DTO.ItemOptionDTO" /> --> <!-- 08-21 삭제 -->
+         <typeAlias alias="rdto" type="com.example.DTO.ReviewDTO" />
+         <typeAlias alias="qdto" type="com.example.DTO.QnaDTO" />
+         <typeAlias alias="mdto" type="com.example.DTO.MemberDTO"/>
+         <typeAlias alias="indto" type="com.example.DTO.item_inquiryDTO"/>
+         <typeAlias alias="pointDTO" type="com.example.DTO.PointDTO" /><!-- 08-17 추가 -->
+         <typeAlias alias="interestedDTO" type="com.example.DTO.Interested_ItemDTO"/><!-- 08-17 추가 -->
+         <typeAlias alias="olDTO" type="com.example.DTO.OrderListDTO"/><!-- 08-19 추가 -->
+         <typeAlias alias="oiDTO" type="com.example.DTO.OrderItemDTO"/><!-- 08-19 추가 -->
+         <typeAlias alias="mpoDTO" type="com.example.DTO.MyPageOrderDTO"/><!-- 08-19 추가 -->
+         <typeAlias alias="mprDTO" type="com.example.DTO.MyPageReviewDTO"/><!-- 08-24 추가 -->
+         <typeAlias alias="iiqDTO" type="com.example.DTO.ItemInquiry_QuestionDTO"/> <!-- 08-25 추가 -->
+         <typeAlias alias="cdto" type="com.example.DTO.CartDTO"/>
+         <typeAlias alias="cldto" type="com.example.DTO.CartListDTO"/>
+         <typeAlias alias="pbDTO" type="com.example.DTO.PayBankDTO" />
+         <typeAlias alias="pcDTO" type="com.example.DTO.PayCardDTO"/>
+         <typeAlias alias="rfDTO" type="com.example.DTO.RefundDTO"/>
+         <typeAlias alias="cancelDTO" type="com.example.DTO.CancelDTO"/>
+         <typeAlias alias="rflistDTO" type="com.example.DTO.RefundListDTO"/>
+    </typeAliases>	
+ 
+</configuration>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.DAO.MyPageItemInquiryDAO">
+	<select id="getAllCount" parameterType="mdto" resultType="Integer">
+		select count(*) from item_inquiry where mem_id=#{mem_id}
+	</select>
+	<select id="getItemInquirys" parameterType="HashMap" resultType="iiqDTO">
+	select * from(select rownum rr, a.*
+    					from(select INQ_NO,INQ_TITLE,MEM_ID,INQ_CONTENT,
+       INQ_REF,to_char(INQ_REG_DATE,'yyyy/mm/dd') INQ_REG_DATE,ITEM_NO,QUESTION_NO,QUESTION_CONTENT 
+         from item_inquiry natural join question 
+           where mem_id=#{mdto.mem_id})a )b
+			where rr BETWEEN #{start} and #{end}
+	</select>
+</mapper>
