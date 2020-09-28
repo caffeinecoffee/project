@@ -1,6 +1,7 @@
-package synapsoft;
+package ProjectEuler;
+// https://euler.synap.co.kr/problem=92
 
-public class synapsoft {
+public class Problem092 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -25,6 +26,7 @@ public class synapsoft {
 					break;
 				} else if (calNum == 4) {
 					unhappyNum += value;
+					unhappyCnt++;
 					calNum = 0;
 					break;
 				}
