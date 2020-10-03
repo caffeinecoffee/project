@@ -10,7 +10,7 @@ $(function(){
 	document.onkeydown = doNotReload;
 	
 	$("#emailUpdateBtnText").click(function(){
-		var text = $("#emailUpdateBtnText").text();
+		let text = $("#emailUpdateBtnText").text();
 		if(text == "이메일 변경"){
 			$("#emailUpdateBtnText").text("변경 취소");
 			$(".emailChangeForm").css("display","block");
@@ -20,7 +20,7 @@ $(function(){
 		}
 	});
 	$("#telUpdateBtnText").click(function(){
-		var text = $("#telUpdateBtnText").text();
+		let text = $("#telUpdateBtnText").text();
 		if(text == "번호 변경"){
 			$("#telUpdateBtnText").text("변경 취소");
 			$(".phoneChangeForm").css("display","block");
@@ -39,7 +39,7 @@ $(function(){
 		}else if($("#email_address").val() == ''){
 			$("#emailMsg").text("이메일을 입력해주세요.");
 		}else{
-			var email = $("#email_id").val()+'@'+$("#email_address").val();
+			let email = $("#email_id").val()+'@'+$("#email_address").val();
 			$.ajax({
 	    		type : "POST",
 	    		url : "emailCheck",
@@ -66,7 +66,7 @@ $(function(){
 			$("#tel3").focus();
 			$("#telMsg").text("번호를 입력하세요.");
 		}else{
-			var tel = $("#tel1").val()+"-"+$("#tel2").val()+"-"+$("#tel3").val();
+			let tel = $("#tel1").val()+"-"+$("#tel2").val()+"-"+$("#tel3").val();
 			$.ajax({
 	    		type : "POST",
 	    		url : "telUpdate",
@@ -82,16 +82,16 @@ $(function(){
 		return false;
 	});
 	$("#udatePwdBtn").click(function(){
-		var currentPwSize =$("#currentPw").val().length;
-		var changePw1 =$("#changePw1").val().length;
-		var changePw2 =$("#changePw2").val().length;
-		var pwCheck = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;
+		let currentPwSize =$("#currentPw").val().length;
+		let changePw1 =$("#changePw1").val().length;
+		let changePw2 =$("#changePw2").val().length;
+		let pwCheck = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;
 		
-		var currentPw = $("#currentPw").val();
-		var changePw1 =$("#changePw1").val();
-		var changePw2 =$("#changePw2").val()
+		let currentPw = $("#currentPw").val();
+		let changePw1 =$("#changePw1").val();
+		let changePw2 =$("#changePw2").val()
 
-		var password = 'password1';
+		let password = 'password1';
 		console.log(pwCheck .test(password));
 
 		
@@ -123,9 +123,9 @@ $(function(){
 			$("#pwMsg").css("color","red");
 			$("#pwMsg").text("현재 비밀번호와 같습니다");
 		}else{
-			var currentPw = $("#currentPw").val();
-			var changePw1 = $("#changePw1").val();
-			var changePw2 = $("#changePw2").val();
+			let currentPw = $("#currentPw").val();
+			let changePw1 = $("#changePw1").val();
+			let changePw2 = $("#changePw2").val();
 			$.ajax({
 	    		type : "POST",
 	    		url : "pwChange",
@@ -141,9 +141,9 @@ $(function(){
 		return false;
 	});
 	$(".addressUpdateBtnText").click(function(){
-		var zipcode = $("#zipcode").val();
-		var address1 = $("#address1").val();
-		var address2 = $("#address2").val();
+		let zipcode = $("#zipcode").val();
+		let address1 = $("#address1").val();
+		let address2 = $("#address2").val();
 		if($("#zipcode").val() == "" && $("#address1").val()){
 			$(".addressMsg").css("color","red");
 			$(".addressMsg").text("우편번호를 검색해주세요.");
@@ -199,8 +199,8 @@ function zipCheck() {
                     // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
                     // 각 주소의 노출 규칙에 따라 주소를 조합한다.
                     // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                    var fullAddr = ''; // 최종 주소 변수
-                    var extraAddr = ''; // 조합형 주소 변수
+                    let fullAddr = ''; // 최종 주소 변수
+                    let extraAddr = ''; // 조합형 주소 변수
 
                     // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
                     if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우

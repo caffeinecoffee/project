@@ -44,7 +44,7 @@ public class CodingQuiz005 {
 					stringNum[cnt] = null;
 				}
 				for (int i = 0; i < strLength; i++) {
-//					System.out.printf("a = %s, b = %s \n", a, b);
+					System.out.printf("a = %s, b = %s \n", a, b);
 //					System.out.println(sw);
 					if (stringNum[i] != null) {
 						if (sw) {

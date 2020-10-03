@@ -1,6 +1,6 @@
 $(function(){
 	$("#Btn").click(function(){
-		var checkData = $("#checkData").val();
+		let checkData = $("#checkData").val();
 		if(checkData == ""){
 			$("#msg").text("인증번호를 입력해주세요.");
 		}else{

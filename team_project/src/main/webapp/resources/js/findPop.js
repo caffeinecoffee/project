@@ -2,10 +2,10 @@
 		if (num == '1') {
 			document.getElementById("findPop PWfind").style.display = "none";
 			document.getElementById("findPop IDfind").style.display = "";
-			var mb_ID = $("#mbID").val();
-			var mbPWPhone1 = $("#mbPWPhone1").val();
-			var mbPWPhone2 = $("#mbPWPhone2").val();
-			var mbPWPhone3 = $("#mbPWPhone3").val();
+			let mb_ID = $("#mbID").val();
+			let mbPWPhone1 = $("#mbPWPhone1").val();
+			let mbPWPhone2 = $("#mbPWPhone2").val();
+			let mbPWPhone3 = $("#mbPWPhone3").val();
 		}
 		if (num == '2') {
 			document.getElementById("findPop IDfind").style.display = "none";
@@ -34,8 +34,8 @@
 				'width=600,height=400,left=0,top=0');
 	}
 	function ID_check() {
-		var mb_Name = $("#mbName").val();
-		var email = $("#email").val();
+		let mb_Name = $("#mbName").val();
+		let email = $("#email").val();
 
 		//alert(mb_Phone);
 
@@ -61,8 +61,8 @@
 
 	}
 	function PW_check() {
-		var mb_ID = $("#mbID").val();
-		var mem_email = $("#mem_email").val();
+		let mb_ID = $("#mbID").val();
+		let mem_email = $("#mem_email").val();
 		//alert(mb_Phone);
 
 	$.get("/pw_check",
@@ -88,7 +88,7 @@
 	}
 $(function(){
 	$("#certification_number_btn").click(function(){
-		var code = $("#verification_code").val();
+		let code = $("#verification_code").val();
 		$.ajax({
 			async : true,
 			type : 'post',

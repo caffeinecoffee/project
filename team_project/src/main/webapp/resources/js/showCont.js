@@ -25,15 +25,15 @@ $(window).load(function(){
 	}
 	if($('.main_theme_slider').length > 0){
 		if($('.main_theme_slider li').length >1){
-			var themeSlider =$('.main_theme_slider').bxSlider({
+			let themeSlider =$('.main_theme_slider').bxSlider({
 				controls:true,
 				auto:true,
 				autoHover:true,
 				onSlideBefore:function(){
 					themeSlider.stopAuto();
 					themeSlider.startAuto();
-					var idx = themeSlider.getCurrentSlide();
-					var tit = $(".theme_title");
+					let idx = themeSlider.getCurrentSlide();
+					let tit = $(".theme_title");
 					tit.find("li.on").removeClass("on");
 					tit.find("li:eq("+idx+")").addClass("on");
 				}
@@ -81,7 +81,7 @@ $(window).load(function(){
 
 /* 리스트 삭제 버튼 활성화(li태그 삭제버튼) */
 function listDel(){
-	var listnum = false;
+	let listnum = false;
 	$(".btn_listDel").on("click",function(){
 		if(event.preventDefault) event.preventDefault();
 		if($(this).closest("li").hasClass("addnumlist")) listnum=true;
@@ -92,7 +92,7 @@ function listDel(){
 /* 전체 선택 */
 function chkAll(){
 	$(".chkAll").on("change",function(){
-		var chk = false;
+		let chk = false;
 		$(this).is(":checked") ? chk = true : chk = false;
 		if(chk){
 			$(".chkList").prop("checked",true);
@@ -106,14 +106,14 @@ function selectChange(){
 	$("#showWrap").on('change', 'select.selectBox', function(event) {
 		event.preventDefault();
 		/* Act on the event */
-		var select_name = $(this).children("option:selected").text();
+		let select_name = $(this).children("option:selected").text();
         $(this).closest(".select_box").find("label").text(select_name);
 	});
 }
 
 // quick_request toggle button
 function quickReq(){
-	var _t = $("#quickRequest");
+	let _t = $("#quickRequest");
 	_t.hasClass("on") ? _t.removeClass("on") :_t.addClass("on");
 }
 
@@ -122,13 +122,13 @@ function bgmask(opt){
 	if(opt=='close'){
 		$("#bgmask").detach();
 	}else{
-		var bg = "<div id='bgmask'></div>"
+		let bg = "<div id='bgmask'></div>"
 		$("#showWrap").append(bg);
 	}
 	
 }
 
-var layPop = {
+let layPop = {
     open:function(obj){
         $(".layPop"+"."+obj).show();
         $("#popBg").show();
@@ -147,7 +147,7 @@ function sgTab(){
 				$("#tab li.on").removeClass("on");
 				$("#tab").parent().find(".innerCont.on").removeClass("on");
 				$(this).parent().addClass("on");
-				var idx = $(this).parent().index();
+				let idx = $(this).parent().index();
 				$("#tab").parent().find(".innerCont:eq("+idx+")").addClass("on");
 			}
 		}else{
@@ -158,19 +158,19 @@ function sgTab(){
 
 
 function scrollTo(obj){
-	var _t = $("#"+obj).offset().top;
+	let _t = $("#"+obj).offset().top;
 	  $('html, body').animate({scrollTop : _t}, 0);
 }
 
-var top_banner = $(".showgle_top_banner");
-var floatBanner = {
+let top_banner = $(".showgle_top_banner");
+let floatBanner = {
 	init:function(){
 		if(top_banner.hasClass("on")){
-			var float_top = 163+top_banner.height();
+			let float_top = 163+top_banner.height();
 			$('#floating').css({'top':float_top})
 		}
-		var _h = $(window).height();
-		var _ch = $("#flaotCont").height();
+		let _h = $(window).height();
+		let _ch = $("#flaotCont").height();
 		if(_h > _ch){
 			$("#flaotCont").css({'height':_h})
 		}

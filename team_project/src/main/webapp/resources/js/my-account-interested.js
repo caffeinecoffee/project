@@ -7,7 +7,7 @@ $(function(){
 		}
 	});
 	$("#selectDelete").click(function(){
-		var arrayParam = new Array();
+		let arrayParam = new Array();
 		if(confirm("삭제하시겠습니까?")){
 			$("input:checkbox[name=check]:checked").each(function(){
 				arrayParam.push($(this).val());
