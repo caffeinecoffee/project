@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,12 +15,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class ModifyPanel extends JPanel implements MouseListener, ActionListener {
 	DBConnect DBConnect = new DBConnect();
-	private JButton refreshButton = new JButton("»õ·Î°íÄ§");
+	private JButton refreshButton = new JButton("ï¿½ï¿½ï¿½Î°ï¿½Ä§");
 	DefaultTableModel model;
 	JTable table;
 	JScrollPane scroll;
-	private JLabel Label = new JLabel("¿ìÅ¬¸¯À¸·Î ¼öÁ¤");
-	private String[] header = { "ÀÌ¸§", "ÈÞ´ëÆù¹øÈ£", "Á÷Àå", "ÀÌ¸ÞÀÏ", "°ü°è" };
+	private JLabel Label = new JLabel("ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+	private String[] header = { "ï¿½Ì¸ï¿½", "ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½È£", "ï¿½ï¿½ï¿½ï¿½", "ï¿½Ì¸ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½" };
 
 	public ModifyPanel() {
 		setLayout(null);
